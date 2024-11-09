@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id('id_competencia');
             $table->string('nombre_competencia', 100);
             $table->text('descripcion')->nullable();
+
+            $table->foreignId('id_unidad')->unique()->references('id_unidad')->on('unidades')->onDelete('cascade');
+
             $table->foreignId('id_curso')->references('id_curso')->on('cursos')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('unidades', function (Blueprint $table) {
             $table->id('id_unidad');
             $table->string('nombre_unidad', 50);
+            $table->foreignId('id_periodo')->references('id_periodo')->on('periodos')->onDelete('cascade'); 
             $table->timestamps();
         });
     }
