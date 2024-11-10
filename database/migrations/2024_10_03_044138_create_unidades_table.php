@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_unidad');
             $table->string('nombre_unidad', 50);
             $table->foreignId('id_periodo')->references('id_periodo')->on('periodos')->onDelete('cascade'); 
+            $table->integer('orden');
             $table->timestamps();
         });
     }

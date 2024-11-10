@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('calificaciones', function (Blueprint $table) {
             $table->id('id_calificacion');
-            $table->foreignId('id_matricula')->references('id_matricula')->on('matriculas')->onDelete('cascade'); 
-            $table->foreignId('id_competencia')->references('id_competencia')->on('competencias')->onDelete('cascade'); 
+            $table->foreignId('id_matricula')->references('id_matricula')->on('matriculas')->onDelete('cascade');
+            $table->foreignId('id_competencia')->references('id_competencia')->on('competencias')->onDelete('cascade');
             $table->enum('calificacion', ['AD','A', 'B', 'C', 'D']);
-            $table->primary(['id_calificacion', 'id_matricula', 'id_competencia']); 
+            $table->unique(['id_matricula', 'id_competencia']); 
             $table->timestamps();
         });
     }
