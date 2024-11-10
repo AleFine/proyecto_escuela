@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('ciudad', 50);
             $table->string('distrito', 50);
             $table->string('telefono', 15);
-            $table->foreignId('id_grado')->nullable()->references('id_grado')->on('grados')->onDelete('cascade');  
-            $table->foreignId('id_seccion')->nullable()->references('id_seccion')->on('secciones')->onDelete('cascade');  
             $table->timestamps();
         });
     }
