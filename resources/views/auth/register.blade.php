@@ -17,7 +17,7 @@
         </div>
 
         <div>
-            <label for="rol" class="block text-sm font-medium text-gray-700">Selecciona tu rol</label>
+            <x-input-label for="rol" :value="__('Selecciona tu rol')" />
             <select id="rol" name="rol" required class="mt-1 block w-full">
                 <option value="admin">Administrador</option>
                 <option value="profesor">Profesor</option>
