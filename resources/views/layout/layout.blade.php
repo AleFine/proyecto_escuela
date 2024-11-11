@@ -107,7 +107,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">{{ auth()->user()->name }} (Administrador)</span>
+                                                    <span class="fw-medium d-block">{{ Auth::user()->name }}
+                                                        @if (Auth::user()->rol === 'admin')
+                                                        {{ __(' (Administrador)') }}
+                                                        @elseif(Auth::user()->rol === 'profesor')
+                                                        {{ __(' (Profesor)') }}
+                                                        @elseif(Auth::user()->rol === 'padre_familia')
+                                                        {{ __(' (Padre de Familia)') }}
+                                                        @endif
+                                                    </span>
                                                 </div>
                                             </div>
                                         </a>

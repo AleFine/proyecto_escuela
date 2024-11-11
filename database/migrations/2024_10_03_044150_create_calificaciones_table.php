@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unique(['id_matricula', 'id_competencia']); 
             $table->timestamps();
         });
-    }
+    }   
 
     /**
      * Reverse the migrations.

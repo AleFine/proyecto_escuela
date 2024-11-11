@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfesorController;
 use App\Http\Controllers\PadreFamiliaController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\User;
 
 /*
@@ -18,9 +19,8 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {
-    return view('layout.layout');
-});
+Route::get('/', [AuthenticatedSessionController::class, 'dashboard']);
+Route::get('dashboard', [AuthenticatedSessionController::class, 'dashboard'])->name('dashboard');   
 
 Route::middleware(['auth', 'verified'])->group(function () {
 

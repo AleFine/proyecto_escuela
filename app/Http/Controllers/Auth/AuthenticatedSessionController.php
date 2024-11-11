@@ -37,6 +37,23 @@ class AuthenticatedSessionController extends Controller
         };
     }
 
+    
+    public function dashboard()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            
+            return match ($user->rol) {
+                'admin' => redirect()->route('admin.dashboard'),
+                'profesor' => redirect()->route('profesor.dashboard'),
+                'padre_familia' => redirect()->route('padre_familia.dashboard'),
+                default => throw new \Exception('Rol de usuario no válido'),
+            };
+        }
+
+        return redirect("login")->withSuccess('No tienes acceso.');
+    }
+
     /**
      * Destroy an authenticated session.
      */
