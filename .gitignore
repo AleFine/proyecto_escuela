@@ -1,3 +1,4 @@
+/storage/app/google-cloud/*.json
 /.phpunit.cache
 /node_modules
 /public/build
