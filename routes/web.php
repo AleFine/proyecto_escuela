@@ -5,9 +5,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Roles\AdminController;
 use App\Http\Controllers\Roles\ProfesorController;
 use App\Http\Controllers\Roles\PadreFamiliaController;
+use App\Http\Controllers\Controladores\AlumnoController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
+use Illuminate\Support\Facades\Storage;
+use Google\Cloud\Storage\StorageClient;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,4 +48,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::prefix('alumnos')->group(function () {
+    Route::get('/', [AlumnoController::class, 'index'])->name('alumnos.index');
+    Route::get('/create', [AlumnoController::class, 'create'])->name('alumnos.create');
+    Route::post('/', [AlumnoController::class, 'store'])->name('alumnos.store');
+    Route::get('/{id}/edit', [AlumnoController::class, 'edit'])->name('alumnos.edit');
+    Route::put('/{id}', [AlumnoController::class, 'update'])->name('alumnos.update');
+    Route::get('/{id}/confirmar', [AlumnoController::class, 'confirmar'])->name('alumnos.confirmar');
+    Route::delete('/{id}', [AlumnoController::class, 'destroy'])->name('alumnos.destroy');
+});
+
+Route::get('/get-ciudades', [AlumnoController::class, 'getCiudades'])->name('alumnos.get-ciudades');
+Route::get('/get-distritos', [AlumnoController::class, 'getDistritos'])->name('alumnos.get-distritos');
+
 require __DIR__.'/auth.php';
+
