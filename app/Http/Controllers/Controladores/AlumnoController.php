@@ -13,7 +13,7 @@ use App\Models\Distrito;
 class AlumnoController extends Controller
 {
     const PAGINATION = 10;
-
+    const DEFAULT_IMAGE = 'https://storage.googleapis.com/imagenes-alumnos/alumnos/dafault_image.png';
     public function index(Request $request)
     {
         $buscarpor = $request->get('buscarpor');
@@ -98,6 +98,8 @@ class AlumnoController extends Controller
                     'path' => $filePath,
                     'url' => $data['imagen_rostro']
                 ]);
+            }else {
+                $data['imagen_rostro'] = self::DEFAULT_IMAGE;
             }
     
             Alumno::create($data);
@@ -197,8 +199,8 @@ class AlumnoController extends Controller
                     if (!$this->deleteImageFromStorage($alumno->imagen_rostro)) {
                         throw new \Exception('No se pudo eliminar la imagen actual');
                     }
-                    $data['imagen_rostro'] = null;
                 }
+                $data['imagen_rostro'] = self::DEFAULT_IMAGE;
             }
             elseif ($request->hasFile('imagen_rostro')) {
                 $file = $request->file('imagen_rostro');

@@ -75,7 +75,7 @@
                         <ul class="menu-sub">
                             <li class="menu-item active">
                                 <a href="{{ route('alumnos.index') }}" class="menu-link">
-                                    <div data-i18n="Analytics">Estudiantes</div>
+                                    <div data-i18n="Analytics">Alumnos</div>
                                 </a>
                             </li>
                           </ul>
@@ -160,7 +160,7 @@
                         <ul class="menu-sub">
                             <li class="menu-item">
                                 <a href="#" class="menu-link">
-                                    <div data-i18n="Without Menu">Filtar cursos y estudiantes</div>
+                                    <div data-i18n="Without Menu">Filtar cursos y alumnos</div>
                                 </a>
                             </li>
                             
