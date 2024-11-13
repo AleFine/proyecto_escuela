@@ -52,6 +52,7 @@ Route::prefix('alumnos')->group(function () {
     Route::get('/', [AlumnoController::class, 'index'])->name('alumnos.index');
     Route::get('/create', [AlumnoController::class, 'create'])->name('alumnos.create');
     Route::post('/', [AlumnoController::class, 'store'])->name('alumnos.store');
+    Route::get('/{id}', [AlumnoController::class, 'show'])->name('alumnos.show');
     Route::get('/{id}/edit', [AlumnoController::class, 'edit'])->name('alumnos.edit');
     Route::put('/{id}', [AlumnoController::class, 'update'])->name('alumnos.update');
     Route::get('/{id}/confirmar', [AlumnoController::class, 'confirmar'])->name('alumnos.confirmar');

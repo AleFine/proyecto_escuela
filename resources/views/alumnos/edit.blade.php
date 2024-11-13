@@ -119,11 +119,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="imagen_rostro">Imagen de Rostro</label>
+                    <label for="imagen_rostro">Imagen del Alumno</label>
+                    <div class="mb-3">
+                        @if ($alumno->imagen_rostro)
+                         <img src="{{ $alumno->imagen_rostro }}" alt="Imagen actual" class="mt-2 rounded img-fluid" width="150">
+                        @endif
+                    </div>
+                    
                     <input type="file" class="form-control @error('imagen_rostro') is-invalid @enderror" id="imagen_rostro" name="imagen_rostro" accept="image/*">
-                    @if ($alumno->imagen_rostro)
-                        <img src="{{ $alumno->imagen_rostro }}" alt="Imagen actual" class="mt-2" width="150">
-                    @endif
+                    
                     @error('imagen_rostro')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

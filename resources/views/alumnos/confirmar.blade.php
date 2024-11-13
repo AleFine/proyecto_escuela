@@ -1,7 +1,7 @@
 @extends('layout.layout')
 @section('contenido')
     <div class="container">
-        <h1>¿Desea eliminar el registro?</h1>
+        <h1>¿Desea eliminar el Alumno?</h1>
         <div class="mb-3">
             <strong>Código:</strong> {{ $alumno->id_alumno }}<br>
             <strong>Nombre:</strong> {{ $alumno->nombre }} {{ $alumno->apellido }}

@@ -94,7 +94,7 @@
                     </span>
                 @enderror
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="imagen_rostro">Imagen de Rostro</label>
                 <input type="file" 
                        class="form-control @error('imagen_rostro') is-invalid @enderror" 

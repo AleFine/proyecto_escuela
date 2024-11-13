@@ -300,6 +300,20 @@ class AlumnoController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        try {
+            $alumno = Alumno::findOrFail($id);
+            return view('alumnos.show', compact('alumno'));
+        } catch (\Exception $e) {
+            Log::error('Error al mostrar alumno:', [
+                'error' => $e->getMessage(),
+                'alumno_id' => $id
+            ]);
+            return redirect()->route('alumnos.index')
+                ->withErrors(['error' => 'No se pudo encontrar el alumno solicitado']);
+        }
+    }
 
     public function getCiudades(Request $request)
     {
