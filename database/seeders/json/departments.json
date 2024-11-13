@@ -1,0 +1,128 @@
+[
+    {
+        "id" : "01",
+        "name" : "AMAZONAS",
+        "zone" : "NORTE"
+    },
+    {
+        "id" : "02",
+        "name" : "ANCASH",
+        "zone" : "CENTRO"
+    },
+    {
+        "id" : "03",
+        "name" : "APURIMAC",
+        "zone" : "SUR"
+    },
+    {
+        "id" : "04",
+        "name" : "AREQUIPA",
+        "zone" : "SUR"
+    },
+    {
+        "id" : "05",
+        "name" : "AYACUCHO",
+        "zone" : "SUR"
+    },
+    {
+        "id" : "06",
+        "name" : "CAJAMARCA",
+        "zone" : "NORTE"
+    },
+    {
+        "id" : "07",
+        "name" : "CALLAO",
+        "zone" : "CENTRO"
+
+    },
+    {
+        "id" : "08",
+        "name" : "CUSCO",
+        "zone" : "SUR"
+    },
+    {
+        "id" : "09",
+        "name" : "HUANCAVELICA",
+        "zone" : "CENTRO"
+    },
+    {
+        "id" : "10",
+        "name" : "HUANUCO",
+        "zone" : "CENTRO"
+    },
+    {
+        "id" : "11",
+        "name" : "ICA",
+        "zone" : "CENTRO"
+    },
+    {
+        "id" : "12",
+        "name" : "JUNIN",
+        "zone" : "CENTRO"
+    },
+    {
+        "id" : "13",
+        "name" : "LA LIBERTAD",
+        "zone" : "NORTE"
+    },
+    {
+        "id" : "14",
+        "name" : "LAMBAYEQUE",
+        "zone" : "NORTE"
+    },
+    {
+        "id" : "15",
+        "name" : "LIMA",
+        "zone" : "CENTRO"
+    },
+    {
+        "id" : "16",
+        "name" : "LORETO",
+        "zone" : "NORTE"
+    },
+    {
+        "id" : "17",
+        "name" : "MADRE DE DIOS",
+        "zone" : "SUR"
+    },
+    {
+        "id" : "18",
+        "name" : "MOQUEGUA",
+        "zone" : "SUR"
+    },
+    {
+        "id" : "19",
+        "name" : "PASCO",
+        "zone" : "CENTRO"
+    },
+    {
+        "id" : "20",
+        "name" : "PIURA",
+        "zone" : "NORTE"
+    },
+    {
+        "id" : "21",
+        "name" : "PUNO",
+        "zone" : "SUR"
+    },
+    {
+        "id" : "22",
+        "name" : "SAN MARTIN",
+        "zone" : "NORTE"
+    },
+    {
+        "id" : "23",
+        "name" : "TACNA",
+        "zone" : "SUR"
+    },
+    {
+        "id" : "24",
+        "name" : "TUMBES",
+        "zone" : "NORTE"
+    },
+    {
+        "id" : "25",
+        "name" : "UCAYALI",
+        "zone" : "CENTRO"
+    }
+]

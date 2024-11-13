@@ -1,0 +1,982 @@
+[
+    {
+        "id" : "0101",
+        "name" : "CHACHAPOYAS",
+        "department_id" : "01"
+    },
+    {
+        "id" : "0102",
+        "name" : "BAGUA",
+        "department_id" : "01"
+    },
+    {
+        "id" : "0103",
+        "name" : "BONGARA",
+        "department_id" : "01"
+    },
+    {
+        "id" : "0104",
+        "name" : "CONDORCANQUI",
+        "department_id" : "01"
+    },
+    {
+        "id" : "0105",
+        "name" : "LUYA",
+        "department_id" : "01"
+    },
+    {
+        "id" : "0106",
+        "name" : "RODRIGUEZ DE MENDOZA",
+        "department_id" : "01"
+    },
+    {
+        "id" : "0107",
+        "name" : "UTCUBAMBA",
+        "department_id" : "01"
+    },
+    {
+        "id" : "0201",
+        "name" : "HUARAZ",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0202",
+        "name" : "AIJA",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0203",
+        "name" : "ANTONIO RAYMONDI",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0204",
+        "name" : "ASUNCION",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0205",
+        "name" : "BOLOGNESI",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0206",
+        "name" : "CARHUAZ",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0207",
+        "name" : "CARLOS FERMIN FITZCARRALD",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0208",
+        "name" : "CASMA",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0209",
+        "name" : "CORONGO",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0210",
+        "name" : "HUARI",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0211",
+        "name" : "HUARMEY",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0212",
+        "name" : "HUAYLAS",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0213",
+        "name" : "MARISCAL LUZURIAGA",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0214",
+        "name" : "OCROS",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0215",
+        "name" : "PALLASCA",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0216",
+        "name" : "POMABAMBA",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0217",
+        "name" : "RECUAY",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0218",
+        "name" : "SANTA",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0219",
+        "name" : "SIHUAS",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0220",
+        "name" : "YUNGAY",
+        "department_id" : "02"
+    },
+    {
+        "id" : "0301",
+        "name" : "ABANCAY",
+        "department_id" : "03"
+    },
+    {
+        "id" : "0302",
+        "name" : "ANDAHUAYLAS",
+        "department_id" : "03"
+    },
+    {
+        "id" : "0303",
+        "name" : "ANTABAMBA",
+        "department_id" : "03"
+    },
+    {
+        "id" : "0304",
+        "name" : "AYMARAES",
+        "department_id" : "03"
+    },
+    {
+        "id" : "0305",
+        "name" : "COTABAMBAS",
+        "department_id" : "03"
+    },
+    {
+        "id" : "0306",
+        "name" : "CHINCHEROS",
+        "department_id" : "03"
+    },
+    {
+        "id" : "0307",
+        "name" : "GRAU",
+        "department_id" : "03"
+    },
+    {
+        "id" : "0401",
+        "name" : "AREQUIPA",
+        "department_id" : "04"
+    },
+    {
+        "id" : "0402",
+        "name" : "CAMANA",
+        "department_id" : "04"
+    },
+    {
+        "id" : "0403",
+        "name" : "CARAVELI",
+        "department_id" : "04"
+    },
+    {
+        "id" : "0404",
+        "name" : "CASTILLA",
+        "department_id" : "04"
+    },
+    {
+        "id" : "0405",
+        "name" : "CAYLLOMA",
+        "department_id" : "04"
+    },
+    {
+        "id" : "0406",
+        "name" : "CONDESUYOS",
+        "department_id" : "04"
+    },
+    {
+        "id" : "0407",
+        "name" : "ISLAY",
+        "department_id" : "04"
+    },
+    {
+        "id" : "0408",
+        "name" : "LA UNION",
+        "department_id" : "04"
+    },
+    {
+        "id" : "0501",
+        "name" : "HUAMANGA",
+        "department_id" : "05"
+    },
+    {
+        "id" : "0502",
+        "name" : "CANGALLO",
+        "department_id" : "05"
+    },
+    {
+        "id" : "0503",
+        "name" : "HUANCA SANCOS",
+        "department_id" : "05"
+    },
+    {
+        "id" : "0504",
+        "name" : "HUANTA",
+        "department_id" : "05"
+    },
+    {
+        "id" : "0505",
+        "name" : "LA MAR",
+        "department_id" : "05"
+    },
+    {
+        "id" : "0506",
+        "name" : "LUCANAS",
+        "department_id" : "05"
+    },
+    {
+        "id" : "0507",
+        "name" : "PARINACOCHAS",
+        "department_id" : "05"
+    },
+    {
+        "id" : "0508",
+        "name" : "PAUCAR DEL SARA SARA",
+        "department_id" : "05"
+    },
+    {
+        "id" : "0509",
+        "name" : "SUCRE",
+        "department_id" : "05"
+    },
+    {
+        "id" : "0510",
+        "name" : "VICTOR FAJARDO",
+        "department_id" : "05"
+    },
+    {
+        "id" : "0511",
+        "name" : "VILCAS HUAMAN",
+        "department_id" : "05"
+    },
+    {
+        "id" : "0601",
+        "name" : "CAJAMARCA",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0602",
+        "name" : "CAJABAMBA",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0603",
+        "name" : "CELENDIN",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0604",
+        "name" : "CHOTA",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0605",
+        "name" : "CONTUMAZA",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0606",
+        "name" : "CUTERVO",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0607",
+        "name" : "HUALGAYOC",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0608",
+        "name" : "JAEN",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0609",
+        "name" : "SAN IGNACIO",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0610",
+        "name" : "SAN MARCOS",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0611",
+        "name" : "SAN MIGUEL",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0612",
+        "name" : "SAN PABLO",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0613",
+        "name" : "SANTA CRUZ",
+        "department_id" : "06"
+    },
+    {
+        "id" : "0701",
+        "name" : "CALLAO",
+        "department_id" : "07"
+    },
+    {
+        "id" : "0801",
+        "name" : "CUSCO",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0802",
+        "name" : "ACOMAYO",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0803",
+        "name" : "ANTA",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0804",
+        "name" : "CALCA",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0805",
+        "name" : "CANAS",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0806",
+        "name" : "CANCHIS",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0807",
+        "name" : "CHUMBIVILCAS",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0808",
+        "name" : "ESPINAR",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0809",
+        "name" : "LA CONVENCION",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0810",
+        "name" : "PARURO",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0811",
+        "name" : "PAUCARTAMBO",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0812",
+        "name" : "QUISPICANCHI",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0813",
+        "name" : "URUBAMBA",
+        "department_id" : "08"
+    },
+    {
+        "id" : "0901",
+        "name" : "HUANCAVELICA",
+        "department_id" : "09"
+    },
+    {
+        "id" : "0902",
+        "name" : "ACOBAMBA",
+        "department_id" : "09"
+    },
+    {
+        "id" : "0903",
+        "name" : "ANGARAES",
+        "department_id" : "09"
+    },
+    {
+        "id" : "0904",
+        "name" : "CASTROVIRREYNA",
+        "department_id" : "09"
+    },
+    {
+        "id" : "0905",
+        "name" : "CHURCAMPA",
+        "department_id" : "09"
+    },
+    {
+        "id" : "0906",
+        "name" : "HUAYTARA",
+        "department_id" : "09"
+    },
+    {
+        "id" : "0907",
+        "name" : "TAYACAJA",
+        "department_id" : "09"
+    },
+    {
+        "id" : "1001",
+        "name" : "HUANUCO",
+        "department_id" : "10"
+    },
+    {
+        "id" : "1002",
+        "name" : "AMBO",
+        "department_id" : "10"
+    },
+    {
+        "id" : "1003",
+        "name" : "DOS DE MAYO",
+        "department_id" : "10"
+    },
+    {
+        "id" : "1004",
+        "name" : "HUACAYBAMBA",
+        "department_id" : "10"
+    },
+    {
+        "id" : "1005",
+        "name" : "HUAMALIES",
+        "department_id" : "10"
+    },
+    {
+        "id" : "1006",
+        "name" : "LEONCIO PRADO",
+        "department_id" : "10"
+    },
+    {
+        "id" : "1007",
+        "name" : "MARAÑON",
+        "department_id" : "10"
+    },
+    {
+        "id" : "1008",
+        "name" : "PACHITEA",
+        "department_id" : "10"
+    },
+    {
+        "id" : "1009",
+        "name" : "PUERTO INCA",
+        "department_id" : "10"
+    },
+    {
+        "id" : "1010",
+        "name" : "LAURICOCHA",
+        "department_id" : "10"
+    },
+    {
+        "id" : "1011",
+        "name" : "YAROWILCA",
+        "department_id" : "10"
+    },
+    {
+        "id" : "1101",
+        "name" : "ICA",
+        "department_id" : "11"
+    },
+    {
+        "id" : "1102",
+        "name" : "CHINCHA",
+        "department_id" : "11"
+    },
+    {
+        "id" : "1103",
+        "name" : "NASCA",
+        "department_id" : "11"
+    },
+    {
+        "id" : "1104",
+        "name" : "PALPA",
+        "department_id" : "11"
+    },
+    {
+        "id" : "1105",
+        "name" : "PISCO",
+        "department_id" : "11"
+    },
+    {
+        "id" : "1201",
+        "name" : "HUANCAYO",
+        "department_id" : "12"
+    },
+    {
+        "id" : "1202",
+        "name" : "CONCEPCION",
+        "department_id" : "12"
+    },
+    {
+        "id" : "1203",
+        "name" : "CHANCHAMAYO",
+        "department_id" : "12"
+    },
+    {
+        "id" : "1204",
+        "name" : "JAUJA",
+        "department_id" : "12"
+    },
+    {
+        "id" : "1205",
+        "name" : "JUNIN",
+        "department_id" : "12"
+    },
+    {
+        "id" : "1206",
+        "name" : "SATIPO",
+        "department_id" : "12"
+    },
+    {
+        "id" : "1207",
+        "name" : "TARMA",
+        "department_id" : "12"
+    },
+    {
+        "id" : "1208",
+        "name" : "YAULI",
+        "department_id" : "12"
+    },
+    {
+        "id" : "1209",
+        "name" : "CHUPACA",
+        "department_id" : "12"
+    },
+    {
+        "id" : "1301",
+        "name" : "TRUJILLO",
+        "department_id" : "13"
+    },
+    {
+        "id" : "1302",
+        "name" : "ASCOPE",
+        "department_id" : "13"
+    },
+    {
+        "id" : "1303",
+        "name" : "BOLIVAR",
+        "department_id" : "13"
+    },
+    {
+        "id" : "1304",
+        "name" : "CHEPEN",
+        "department_id" : "13"
+    },
+    {
+        "id" : "1305",
+        "name" : "JULCAN",
+        "department_id" : "13"
+    },
+    {
+        "id" : "1306",
+        "name" : "OTUZCO",
+        "department_id" : "13"
+    },
+    {
+        "id" : "1307",
+        "name" : "PACASMAYO",
+        "department_id" : "13"
+    },
+    {
+        "id" : "1308",
+        "name" : "PATAZ",
+        "department_id" : "13"
+    },
+    {
+        "id" : "1309",
+        "name" : "SANCHEZ CARRION",
+        "department_id" : "13"
+    },
+    {
+        "id" : "1310",
+        "name" : "SANTIAGO DE CHUCO",
+        "department_id" : "13"
+    },
+    {
+        "id" : "1311",
+        "name" : "GRAN CHIMU",
+        "department_id" : "13"
+    },
+    {
+        "id" : "1312",
+        "name" : "VIRU",
+        "department_id" : "13"
+    },
+    {
+        "id" : "1401",
+        "name" : "CHICLAYO",
+        "department_id" : "14"
+    },
+    {
+        "id" : "1402",
+        "name" : "FERREÑAFE",
+        "department_id" : "14"
+    },
+    {
+        "id" : "1403",
+        "name" : "LAMBAYEQUE",
+        "department_id" : "14"
+    },
+    {
+        "id" : "1501",
+        "name" : "LIMA",
+        "department_id" : "15"
+    },
+    {
+        "id" : "1502",
+        "name" : "BARRANCA",
+        "department_id" : "15"
+    },
+    {
+        "id" : "1503",
+        "name" : "CAJATAMBO",
+        "department_id" : "15"
+    },
+    {
+        "id" : "1504",
+        "name" : "CANTA",
+        "department_id" : "15"
+    },
+    {
+        "id" : "1505",
+        "name" : "CAÑETE",
+        "department_id" : "15"
+    },
+    {
+        "id" : "1506",
+        "name" : "HUARAL",
+        "department_id" : "15"
+    },
+    {
+        "id" : "1507",
+        "name" : "HUAROCHIRI",
+        "department_id" : "15"
+    },
+    {
+        "id" : "1508",
+        "name" : "HUAURA",
+        "department_id" : "15"
+    },
+    {
+        "id" : "1509",
+        "name" : "OYON",
+        "department_id" : "15"
+    },
+    {
+        "id" : "1510",
+        "name" : "YAUYOS",
+        "department_id" : "15"
+    },
+    {
+        "id" : "1601",
+        "name" : "MAYNAS",
+        "department_id" : "16"
+    },
+    {
+        "id" : "1602",
+        "name" : "ALTO AMAZONAS",
+        "department_id" : "16"
+    },
+    {
+        "id" : "1603",
+        "name" : "LORETO",
+        "department_id" : "16"
+    },
+    {
+        "id" : "1604",
+        "name" : "MARISCAL RAMON CASTILLA",
+        "department_id" : "16"
+    },
+    {
+        "id" : "1605",
+        "name" : "REQUENA",
+        "department_id" : "16"
+    },
+    {
+        "id" : "1606",
+        "name" : "UCAYALI",
+        "department_id" : "16"
+    },
+    {
+        "id" : "1607",
+        "name" : "DATEM DEL MARAÑON",
+        "department_id" : "16"
+    },
+    {
+        "id" : "1608",
+        "name" : "PUTUMAYO",
+        "department_id" : "16"
+    },
+    {
+        "id" : "1701",
+        "name" : "TAMBOPATA",
+        "department_id" : "17"
+    },
+    {
+        "id" : "1702",
+        "name" : "MANU",
+        "department_id" : "17"
+    },
+    {
+        "id" : "1703",
+        "name" : "TAHUAMANU",
+        "department_id" : "17"
+    },
+    {
+        "id" : "1801",
+        "name" : "MARISCAL NIETO",
+        "department_id" : "18"
+    },
+    {
+        "id" : "1802",
+        "name" : "GENERAL SANCHEZ CERRO",
+        "department_id" : "18"
+    },
+    {
+        "id" : "1803",
+        "name" : "ILO",
+        "department_id" : "18"
+    },
+    {
+        "id" : "1901",
+        "name" : "PASCO",
+        "department_id" : "19"
+    },
+    {
+        "id" : "1902",
+        "name" : "DANIEL ALCIDES CARRION",
+        "department_id" : "19"
+    },
+    {
+        "id" : "1903",
+        "name" : "OXAPAMPA",
+        "department_id" : "19"
+    },
+    {
+        "id" : "2001",
+        "name" : "PIURA",
+        "department_id" : "20"
+    },
+    {
+        "id" : "2002",
+        "name" : "AYABACA",
+        "department_id" : "20"
+    },
+    {
+        "id" : "2003",
+        "name" : "HUANCABAMBA",
+        "department_id" : "20"
+    },
+    {
+        "id" : "2004",
+        "name" : "MORROPON",
+        "department_id" : "20"
+    },
+    {
+        "id" : "2005",
+        "name" : "PAITA",
+        "department_id" : "20"
+    },
+    {
+        "id" : "2006",
+        "name" : "SULLANA",
+        "department_id" : "20"
+    },
+    {
+        "id" : "2007",
+        "name" : "TALARA",
+        "department_id" : "20"
+    },
+    {
+        "id" : "2008",
+        "name" : "SECHURA",
+        "department_id" : "20"
+    },
+    {
+        "id" : "2101",
+        "name" : "PUNO",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2102",
+        "name" : "AZANGARO",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2103",
+        "name" : "CARABAYA",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2104",
+        "name" : "CHUCUITO",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2105",
+        "name" : "EL COLLAO",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2106",
+        "name" : "HUANCANE",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2107",
+        "name" : "LAMPA",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2108",
+        "name" : "MELGAR",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2109",
+        "name" : "MOHO",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2110",
+        "name" : "SAN ANTONIO DE PUTINA",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2111",
+        "name" : "SAN ROMAN",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2112",
+        "name" : "SANDIA",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2113",
+        "name" : "YUNGUYO",
+        "department_id" : "21"
+    },
+    {
+        "id" : "2201",
+        "name" : "MOYOBAMBA",
+        "department_id" : "22"
+    },
+    {
+        "id" : "2202",
+        "name" : "BELLAVISTA",
+        "department_id" : "22"
+    },
+    {
+        "id" : "2203",
+        "name" : "EL DORADO",
+        "department_id" : "22"
+    },
+    {
+        "id" : "2204",
+        "name" : "HUALLAGA",
+        "department_id" : "22"
+    },
+    {
+        "id" : "2205",
+        "name" : "LAMAS",
+        "department_id" : "22"
+    },
+    {
+        "id" : "2206",
+        "name" : "MARISCAL CACERES",
+        "department_id" : "22"
+    },
+    {
+        "id" : "2207",
+        "name" : "PICOTA",
+        "department_id" : "22"
+    },
+    {
+        "id" : "2208",
+        "name" : "RIOJA",
+        "department_id" : "22"
+    },
+    {
+        "id" : "2209",
+        "name" : "SAN MARTIN",
+        "department_id" : "22"
+    },
+    {
+        "id" : "2210",
+        "name" : "TOCACHE",
+        "department_id" : "22"
+    },
+    {
+        "id" : "2301",
+        "name" : "TACNA",
+        "department_id" : "23"
+    },
+    {
+        "id" : "2302",
+        "name" : "CANDARAVE",
+        "department_id" : "23"
+    },
+    {
+        "id" : "2303",
+        "name" : "JORGE BASADRE",
+        "department_id" : "23"
+    },
+    {
+        "id" : "2304",
+        "name" : "TARATA",
+        "department_id" : "23"
+    },
+    {
+        "id" : "2401",
+        "name" : "TUMBES",
+        "department_id" : "24"
+    },
+    {
+        "id" : "2402",
+        "name" : "CONTRALMIRANTE VILLAR",
+        "department_id" : "24"
+    },
+    {
+        "id" : "2403",
+        "name" : "ZARUMILLA",
+        "department_id" : "24"
+    },
+    {
+        "id" : "2501",
+        "name" : "CORONEL PORTILLO",
+        "department_id" : "25"
+    },
+    {
+        "id" : "2502",
+        "name" : "ATALAYA",
+        "department_id" : "25"
+    },
+    {
+        "id" : "2503",
+        "name" : "PADRE ABAD",
+        "department_id" : "25"
+    },
+    {
+        "id" : "2504",
+        "name" : "PURUS",
+        "department_id" : "25"
+    }
+]

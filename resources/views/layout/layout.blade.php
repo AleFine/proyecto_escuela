@@ -65,7 +65,146 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Dashboards -->
-                    
+                    <li class="menu-item ">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <div data-i18n="Dashboards">Dashboards</div>
+                     
+                        </a>
+
+                        <ul class="menu-sub">
+                            <li class="menu-item active">
+                                <a href="{{ route('alumnos.index') }}" class="menu-link">
+                                    <div data-i18n="Analytics">Estudiantes</div>
+                                </a>
+                            </li>
+                          </ul>
+                
+                          <ul class="menu-sub">
+                              <li class="menu-item active">
+                                  <a href="#" class="menu-link">
+                                      <div data-i18n="Analytics">Niveles</div>
+                                  </a>
+                              </li>
+                          </ul>
+                          <ul class="menu-sub">
+                              <li class="menu-item active">
+                                  <a href="#" class="menu-link">
+                                      <div data-i18n="Analytics">Grados</div>
+                                  </a>
+                              </li>
+                          </ul>
+                          <ul class="menu-sub">
+                              <li class="menu-item active">
+                                  <a href="#" class="menu-link">
+                                      <div data-i18n="Analytics">Secciones</div>
+                                  </a>
+                              </li>
+                          </ul>
+                          <ul class="menu-sub">
+                                <li class="menu-item active">
+                                    <a href="#" class="menu-link">
+                                        <div data-i18n="Analytics">Competencias</div>
+                                    </a>
+                                </li>
+                          </ul>
+                          <ul class="menu-sub">
+                              <li class="menu-item active">
+                                  <a href="#" class="menu-link">
+                                      <div data-i18n="Analytics">Departamentos</div>
+                                  </a>
+                              </li>
+                          </ul>
+                          <ul class="menu-sub">
+                              <li class="menu-item active">
+                                  <a href="#" class="menu-link">
+                                      <div data-i18n="Analytics">Personal</div>
+                                  </a>
+                              </li>
+                          </ul>
+                    </li>
+                    <!-- Layouts -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-layout"></i>
+                            <div data-i18n="Layouts">Operaciones</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div data-i18n="Without Menu">Asignar Estudiante a Sección</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <ul class="menu-item " >
+                                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                        <i class="menu-icon tf-icons bx bx-layout"></i>
+                                        <div data-i18n="">Tercio - Superior</div>
+                                    </a>
+                                    <ul class="menu-sub" >
+                                        <li class="menu-item">
+                                            <a href="#" class="menu-link ms-5">
+                                                <div data-i18n="">Nivel Primaria</div>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="#" class="menu-link ms-5">
+                                                <div data-i18n="">Nivel Secundaria</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </ul>
+                            </li>
+                            
+                        </ul>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div data-i18n="Without Menu">Filtar cursos y estudiantes</div>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-collection"></i>
+                            <div data-i18n="Layouts">Cursos</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                <div data-i18n="cursosPrimaria">Cursos - Nivel Primaria</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div data-i18n="cursosSecundaria">Cursos - Nivel Secundaria</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <ul class="menu-item " >
+                                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                        <i class="menu-icon tf-icons bx bx-collection"></i>
+                                        <div data-i18n="">Grado - Cursos</div>
+                                    </a>
+                                    <ul class="menu-sub" >
+                                        <li class="menu-item">
+                                            <a href="#" class="menu-link ms-5">
+                                                <div data-i18n="">Cursos por Grado del Nivel Primaria</div>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="#" class="menu-link ms-5">
+                                                <div data-i18n="">Cursos por Grado del Nivel Secundaria</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </aside>
             <!-- / Menu -->

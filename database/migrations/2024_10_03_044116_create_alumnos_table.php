@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('ciudad', 50);
             $table->string('distrito', 50);
             $table->string('telefono', 15);
+            $table->string('imagen_rostro')->nullable(); 
             $table->timestamps();
         });
     }
