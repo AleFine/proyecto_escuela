@@ -116,7 +116,7 @@ class AlumnoController extends Controller
             return redirect()
                 ->back()
                 ->withInput()
-                ->withErrors(['imagen_rostro' => 'Error al procesar la imagen: ' . $e->getMessage()]);
+                ->withErrors(['imagen_rostro' => 'Error: ' . $e->getMessage()]);
         }
     
     
