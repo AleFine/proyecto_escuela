@@ -151,7 +151,7 @@ class AlumnoController extends Controller
                     'region' => 'required|max:50',
                     'ciudad' => 'required|max:50',
                     'distrito' => 'required|max:50',
-                    'telefono' => 'required|max:15|regex:/^9\d{8}$/',
+                    'telefono' => 'required|max:9',
                     'imagen_rostro' => 'nullable|image|max:2048', 
                 ],
                 [

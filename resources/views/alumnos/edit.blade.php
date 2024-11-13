@@ -5,6 +5,35 @@
     <div class="card border-0 shadow">
         <div class="card-body">
             <h1>Editar Registro de Alumno</h1>
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <h6 class="alert-heading mb-1"><i class="fas fa-exclamation-triangle"></i> Error al actualizar</h6>
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <h6 class="alert-heading mb-1"><i class="fas fa-exclamation-triangle"></i> Error del sistema</h6>
+                    <p class="mb-0">{{ session('error') }}</p>
+                    @if(session('error_details'))
+                        <small class="d-block mt-1">Detalles: {{ session('error_details') }}</small>
+                    @endif
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <i class="fas fa-check-circle"></i> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <form method="POST" action="{{ route('alumnos.update', $alumno->id_alumno) }}" enctype="multipart/form-data">
                 @method('put')
                 @csrf
