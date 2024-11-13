@@ -11,23 +11,23 @@
 
 # Usage
 ```bash
-    composer install
+composer install
 ```
 ```bash
-    composer require google/cloud-storage
+composer require google/cloud-storage
 ```
 ## if there are problems
 ```bash
-    composer require league/flysystem-google-cloud-storage:^3.0
+composer require league/flysystem-google-cloud-storage:^3.0
 ```
 ## Migrate
 ```bash
-   php artisan migrate
-   php artisan db:seed
-   php artisan key:generate
-   php artisan config:cache
+php artisan migrate
+php artisan db:seed
+php artisan key:generate
+php artisan config:cache
 ```
 ## Run
 ```bash
-   php artisan serve
+php artisan serve
 ```
