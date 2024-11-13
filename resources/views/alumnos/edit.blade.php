@@ -103,7 +103,9 @@
                     <select class="form-control @error('region') is-invalid @enderror" id="region" name="region">
                         <option value="">Seleccione una región</option>
                         @foreach($regiones as $region)
-                            <option value="{{ $region->id }}" {{ old('region', $alumno->region) == $region->id ? 'selected' : '' }}>{{ $region->nombre }}</option>
+                            <option value="{{ $region->id }}" {{ $alumno->region_id == $region->id ? 'selected' : '' }}>
+                                {{ $region->nombre }}
+                            </option>
                         @endforeach
                     </select>
                     @error('region')
@@ -113,10 +115,16 @@
                     @enderror
                 </div>
 
+                {{-- Ciudad --}}
                 <div class="form-group">
                     <label for="ciudad">Ciudad</label>
                     <select class="form-control @error('ciudad') is-invalid @enderror" id="ciudad" name="ciudad">
                         <option value="">Seleccione una ciudad</option>
+                        @foreach($ciudades as $ciudad)
+                            <option value="{{ $ciudad->id }}" {{ $alumno->ciudad_id == $ciudad->id ? 'selected' : '' }}>
+                                {{ $ciudad->nombre }}
+                            </option>
+                        @endforeach
                     </select>
                     @error('ciudad')
                         <span class="invalid-feedback" role="alert">
@@ -125,10 +133,16 @@
                     @enderror
                 </div>
 
+                {{-- Distrito --}}
                 <div class="form-group">
                     <label for="distrito">Distrito</label>
                     <select class="form-control @error('distrito') is-invalid @enderror" id="distrito" name="distrito">
                         <option value="">Seleccione un distrito</option>
+                        @foreach($distritos as $distrito)
+                            <option value="{{ $distrito->id }}" {{ $alumno->distrito_id == $distrito->id ? 'selected' : '' }}>
+                                {{ $distrito->nombre }}
+                            </option>
+                        @endforeach
                     </select>
                     @error('distrito')
                         <span class="invalid-feedback" role="alert">
@@ -136,7 +150,6 @@
                         </span>
                     @enderror
                 </div>
-
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
                     <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono" value="{{ old('telefono', $alumno->telefono) }}">
@@ -173,37 +186,44 @@
     </div>
 </div>
 
+
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Cargar las ciudades y distritos con el valor seleccionado en edición
-        const regionId = '{{ old('region', $alumno->region) }}';
-        const ciudadId = '{{ old('ciudad', $alumno->ciudad) }}';
-        const distritoId = '{{ old('distrito', $alumno->distrito) }}';
+document.addEventListener("DOMContentLoaded", function() {
+    const regionId = '{{ $alumno->region_id }}';
+    const ciudadId = '{{ $alumno->ciudad_id }}';
+    const distritoId = '{{ $alumno->distrito_id }}';
 
-        if (regionId) {
-            fetch(`/get-ciudades?region_id=${regionId}`)
-                .then(response => response.json())
-                .then(data => {
-                    const ciudadSelect = document.getElementById('ciudad');
-                    data.forEach(ciudad => {
-                        let option = new Option(ciudad.nombre, ciudad.id, ciudad.id == ciudadId);
-                        ciudadSelect.add(option);
-                    });
+    if (regionId) {
+        fetch(`/get-ciudades?region_id=${regionId}`)
+            .then(response => response.json())
+            .then(data => {
+                const ciudadSelect = document.getElementById('ciudad');
+                ciudadSelect.innerHTML = '<option value="">Seleccione una ciudad</option>';
+                data.forEach(ciudad => {
+                    const option = new Option(ciudad.nombre, ciudad.id);
+                    option.selected = ciudad.id == ciudadId;
+                    ciudadSelect.add(option);
                 });
-        }
 
-        if (ciudadId) {
-            fetch(`/get-distritos?ciudad_id=${ciudadId}`)
-                .then(response => response.json())
-                .then(data => {
-                    const distritoSelect = document.getElementById('distrito');
-                    data.forEach(distrito => {
-                        let option = new Option(distrito.nombre, distrito.id, distrito.id == distritoId);
-                        distritoSelect.add(option);
-                    });
+                if (ciudadId) {
+                    loadDistritos(ciudadId, distritoId);
+                }
+            });
+    }
+
+    function loadDistritos(ciudadId, distritoId = null) {
+        fetch(`/get-distritos?ciudad_id=${ciudadId}`)
+            .then(response => response.json())
+            .then(data => {
+                const distritoSelect = document.getElementById('distrito');
+                distritoSelect.innerHTML = '<option value="">Seleccione un distrito</option>';
+                data.forEach(distrito => {
+                    const option = new Option(distrito.nombre, distrito.id);
+                    option.selected = distrito.id == distritoId; 
+                    distritoSelect.add(option);
                 });
-        }
-    });
+            });
+    }
 
     document.getElementById('region').addEventListener('change', function() {
         const regionId = this.value;
@@ -216,21 +236,14 @@
                     let option = new Option(ciudad.nombre, ciudad.id);
                     ciudadSelect.add(option);
                 });
+                document.getElementById('distrito').innerHTML = '<option value="">Seleccione un distrito</option>';
             });
     });
 
     document.getElementById('ciudad').addEventListener('change', function() {
-        const ciudadId = this.value;
-        fetch(`/get-distritos?ciudad_id=${ciudadId}`)
-            .then(response => response.json())
-            .then(data => {
-                const distritoSelect = document.getElementById('distrito');
-                distritoSelect.innerHTML = '<option value="">Seleccione un distrito</option>';
-                data.forEach(distrito => {
-                    let option = new Option(distrito.nombre, distrito.id);
-                    distritoSelect.add(option);
-                });
-            });
+        loadDistritos(this.value);
     });
+});
 </script>
+
 @endsection

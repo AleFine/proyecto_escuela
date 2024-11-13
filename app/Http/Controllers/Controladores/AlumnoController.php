@@ -127,7 +127,19 @@ class AlumnoController extends Controller
         try {
             $alumno = Alumno::findOrFail($id);
             $regiones = Region::all();
-            return view('alumnos.edit', compact('alumno', 'regiones'));
+            
+            $region = Region::where('nombre', $alumno->region)->first();
+            $ciudad = Ciudad::where('nombre', $alumno->ciudad)->first();
+            $distrito = Distrito::where('nombre', $alumno->distrito)->first();
+
+            $ciudades = $region ? Ciudad::where('region_id', $region->id)->get() : [];
+            $distritos = $ciudad ? Distrito::where('ciudad_id', $ciudad->id)->get() : [];
+
+            $alumno->region_id = $region ? $region->id : null;
+            $alumno->ciudad_id = $ciudad ? $ciudad->id : null;
+            $alumno->distrito_id = $distrito ? $distrito->id : null;
+
+            return view('alumnos.edit', compact('alumno', 'regiones', 'ciudades', 'distritos'));
         } catch (\Exception $e) {
             Log::error('Error al cargar edición:', [
                 'error' => $e->getMessage(),
@@ -137,6 +149,7 @@ class AlumnoController extends Controller
                 ->withErrors(['error' => 'No se pudo cargar el alumno para editar']);
         }
     }
+
 
     public function update(Request $request, $id)
     {
