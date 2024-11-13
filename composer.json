@@ -7,7 +7,6 @@
     "require": {
         "php": "^8.2",
         "google/cloud-storage": "^1.44",
-        "kitloong/laravel-migrations-generator": "^7.0",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "league/flysystem": "3.29",
