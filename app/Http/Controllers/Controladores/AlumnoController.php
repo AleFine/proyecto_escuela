@@ -261,7 +261,7 @@ class AlumnoController extends Controller
         try {
             $alumno = Alumno::findOrFail($id);
             
-            if ($alumno->imagen_rostro) {
+            if ($alumno->imagen_rostro && $alumno->imagen_rostro !== self::DEFAULT_IMAGE) {
                 if (!$this->deleteImageFromStorage($alumno->imagen_rostro)) {
                     Log::warning('No se pudo eliminar la imagen al borrar el alumno', [
                         'alumno_id' => $id,
