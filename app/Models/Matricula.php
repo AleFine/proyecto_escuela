@@ -10,23 +10,13 @@ class Matricula extends Model
     use HasFactory;
 
     protected $table = 'matriculas';
+    protected $primaryKey = 'id_matricula';
 
-    protected $fillable = [
-        'id_alumno',
-        'id_curso',
-        'id_periodo',
-        'id_seccion',
-        'estado',
-    ];
+    protected $fillable = ['id_alumno', 'id_periodo', 'id_seccion', 'estado'];
 
     public function alumno()
     {
         return $this->belongsTo(Alumno::class, 'id_alumno');
-    }
-
-    public function curso()
-    {
-        return $this->belongsTo(Curso::class, 'id_curso');
     }
 
     public function periodo()
@@ -37,5 +27,15 @@ class Matricula extends Model
     public function seccion()
     {
         return $this->belongsTo(Seccion::class, 'id_seccion');
+    }
+
+    public function calificaciones()
+    {
+        return $this->hasMany(Calificacion::class, 'id_matricula');
+    }
+
+    public function cursos()
+    {
+        return $this->belongsToMany(Curso::class, 'matricula_cursos', 'id_matricula', 'id_curso');
     }
 }
