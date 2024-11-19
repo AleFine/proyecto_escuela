@@ -82,21 +82,21 @@
                 
                           <ul class="menu-sub">
                               <li class="menu-item active">
-                                  <a href="#" class="menu-link">
+                                  <a href="{{ route('nivels.index') }}" class="menu-link">
                                       <div data-i18n="Analytics">Niveles</div>
                                   </a>
                               </li>
                           </ul>
                           <ul class="menu-sub">
                               <li class="menu-item active">
-                                  <a href="#" class="menu-link">
+                                  <a href="{{ route('grados.index') }}" class="menu-link">
                                       <div data-i18n="Analytics">Grados</div>
                                   </a>
                               </li>
                           </ul>
                           <ul class="menu-sub">
                               <li class="menu-item active">
-                                  <a href="#" class="menu-link">
+                                  <a href="{{ route('secciones.index') }}" class="menu-link">
                                       <div data-i18n="Analytics">Secciones</div>
                                   </a>
                               </li>
@@ -110,8 +110,8 @@
                           </ul>
                           <ul class="menu-sub">
                               <li class="menu-item active">
-                                  <a href="#" class="menu-link">
-                                      <div data-i18n="Analytics">Departamentos</div>
+                                  <a href="{{ route('areas.index') }}" class="menu-link">
+                                      <div data-i18n="Analytics">Áreas Académicas</div>
                                   </a>
                               </li>
                           </ul>

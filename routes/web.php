@@ -7,6 +7,10 @@ use App\Http\Controllers\Roles\ProfesorController;
 use App\Http\Controllers\Roles\PadreFamiliaController;
 use App\Http\Controllers\Controladores\AlumnoController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Controladores\NivelController;
+use App\Http\Controllers\Controladores\SeccionController;
+use App\Http\Controllers\Controladores\GradoController;
+use App\Http\Controllers\Controladores\AreaAcademicaController;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 
@@ -59,8 +63,48 @@ Route::prefix('alumnos')->group(function () {
     Route::delete('/{id}', [AlumnoController::class, 'destroy'])->name('alumnos.destroy');
 });
 
+Route::prefix('nivels')->group(function () {
+    Route::get('/', [NivelController::class, 'index'])->name('nivels.index');
+    Route::get('/create', [NivelController::class, 'create'])->name('nivels.create');
+    Route::post('/', [NivelController::class, 'store'])->name('nivels.store');
+    Route::get('/{nivel}', [NivelController::class, 'show'])->name('nivels.show');
+    Route::get('/{nivel}/edit', [NivelController::class, 'edit'])->name('nivels.edit');
+    Route::put('/{nivel}', [NivelController::class, 'update'])->name('nivels.update');
+    Route::delete('/{nivel}', [NivelController::class, 'destroy'])->name('nivels.destroy');
+});
+
+Route::prefix('secciones')->group(function () {
+    Route::get('/', [SeccionController::class, 'index'])->name('secciones.index');
+    Route::get('/create', [SeccionController::class, 'create'])->name('secciones.create');
+    Route::post('/', [SeccionController::class, 'store'])->name('secciones.store');
+    Route::get('/{id_seccion}', [SeccionController::class, 'show'])->name('secciones.show');
+    Route::get('/{id_seccion}/edit', [SeccionController::class, 'edit'])->name('secciones.edit');
+    Route::put('/{id_seccion}', [SeccionController::class, 'update'])->name('secciones.update');
+    Route::delete('/{id_seccion}', [SeccionController::class, 'destroy'])->name('secciones.destroy');
+    Route::get('/grado/{id_grado}', [SeccionController::class, 'getSeccionesByGrado'])->name('secciones.by.grado');
+});
+
+Route::prefix('grados')->group(function () {
+    Route::get('/', [GradoController::class, 'index'])->name('grados.index');
+    Route::get('/create', [GradoController::class, 'create'])->name('grados.create');
+    Route::post('/', [GradoController::class, 'store'])->name('grados.store');
+    Route::get('/{grado}', [GradoController::class, 'show'])->name('grados.show');
+    Route::get('/{grado}/edit', [GradoController::class, 'edit'])->name('grados.edit');
+    Route::put('/{grado}', [GradoController::class, 'update'])->name('grados.update');
+    Route::delete('/{grado}', [GradoController::class, 'destroy'])->name('grados.destroy');
+});
+
+Route::prefix('areas')->group(function () {
+    Route::get('/', [AreaAcademicaController::class, 'index'])->name('areas.index');
+    Route::get('/create', [AreaAcademicaController::class, 'create'])->name('areas.create');
+    Route::post('/', [AreaAcademicaController::class, 'store'])->name('areas.store');
+    Route::get('/{id_area_academica}/edit', [AreaAcademicaController::class, 'edit'])->name('areas.edit');
+    Route::put('/{id_area_academica}', [AreaAcademicaController::class, 'update'])->name('areas.update');
+    Route::get('/{id_area_academica}/confirmar', [AreaAcademicaController::class, 'confirmar'])->name('areas.confirmar');
+    Route::delete('/{id_area_academica}', [AreaAcademicaController::class, 'destroy'])->name('areas.destroy');
+});
+
 Route::get('/get-ciudades', [AlumnoController::class, 'getCiudades'])->name('alumnos.get-ciudades');
 Route::get('/get-distritos', [AlumnoController::class, 'getDistritos'])->name('alumnos.get-distritos');
 
 require __DIR__.'/auth.php';
-

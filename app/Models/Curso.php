@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Curso extends Model
 {
@@ -32,5 +33,10 @@ class Curso extends Model
     public function profesores()
     {
         return $this->belongsToMany(Profesor::class, 'profesor_cursos', 'id_curso', 'id_profesor');
+    }
+
+    public function matricula()
+    {
+        return $this->belongsToMany(Matricula::class, 'matricula_cursos', 'id_curso', 'id_matricula');
     }
 }

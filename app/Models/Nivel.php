@@ -11,8 +11,8 @@ class Nivel extends Model
 
     protected $table = 'niveles';
     protected $primaryKey = 'id_nivel';
-
-    protected $fillable = ['nombre_nivel'];
+ 
+    protected $fillable = ['nombre_nivel', 'turno'];
 
     public function grados()
     {
