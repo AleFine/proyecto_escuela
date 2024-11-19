@@ -33,7 +33,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'rol' => ['required', 'in:admin,profesor,padre_familia'], 
+            'rol' => ['required', 'in:admin,profesor,padre_familia'],
         ]);
 
         $user = User::create([
@@ -48,11 +48,11 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         if ($user->isAdmin()) {
-            return redirect()->route('admin.dashboard');  
+            return redirect()->route('admin.dashboard');
         } elseif ($user->isProfesor()) {
-            return redirect()->route('profesor.dashboard');  
+            return redirect()->route('profesor.dashboard');
         } else {
-            return redirect()->route('padre_familia.dashboard');  
+            return redirect()->route('padre_familia.dashboard', ['gmail' => $request->email]);
         }
     }
 }

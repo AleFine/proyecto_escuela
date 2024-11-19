@@ -11,6 +11,8 @@ class PadreFamilia extends Model
 
     protected $table = 'padres_familia';
 
+    protected $primaryKey = 'id_padre_familia';
+
     protected $fillable = [
         'nombre',
         'apellido',
@@ -18,8 +20,13 @@ class PadreFamilia extends Model
         'telefono',
     ];
 
-    public function alumnos()
+    public function hijos()
     {
         return $this->belongsToMany(Alumno::class, 'relacion_padres_alumnos', 'id_padre_familia', 'id_alumno');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id','id');
     }
 }
