@@ -69,7 +69,7 @@
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Dashboards">Dashboards</div>
-                     
+
                         </a>
 
                         <ul class="menu-sub">
@@ -79,7 +79,7 @@
                                 </a>
                             </li>
                           </ul>
-                
+
                           <ul class="menu-sub">
                               <li class="menu-item active">
                                   <a href="{{ route('nivels.index') }}" class="menu-link">
@@ -155,7 +155,7 @@
                                     </ul>
                                 </ul>
                             </li>
-                            
+
                         </ul>
                         <ul class="menu-sub">
                             <li class="menu-item">
@@ -163,7 +163,7 @@
                                     <div data-i18n="Without Menu">Filtar cursos y alumnos</div>
                                 </a>
                             </li>
-                            
+
                         </ul>
                     </li>
 
@@ -174,12 +174,12 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('cursos.index', ['nivel'=>1]) }}" class="menu-link">
                                 <div data-i18n="cursosPrimaria">Cursos - Nivel Primaria</div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('cursos.index', ['nivel'=>2]) }}" class="menu-link">
                                     <div data-i18n="cursosSecundaria">Cursos - Nivel Secundaria</div>
                                 </a>
                             </li>
@@ -325,6 +325,8 @@
 
     <!-- Place this tag in your head or just before your close-->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     @yield('script')
   </body>

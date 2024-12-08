@@ -3,7 +3,10 @@
 @section('contenido')
 
 <main>
-    <h1>Bienvenido {{ $padre->nombre }}</h1>   
+    <h1>Bienvenido {{ $padre->nombre }}</h1>
+    <div class="my-3">
+        <h4>Tus Estudiantes Matriculados</h4>
+    </div>
 
         @if(count($hijos) == 0)
             <div class="alert alert-warning text-center" role="alert">
@@ -21,7 +24,7 @@
                             <h5 class="card-title">{{ $hijo->nombre }} {{ $hijo->apellido }}</h5>
                             <p class="card-text">DNI: {{ $hijo->dni }}</p>
                             <div class="d-grid">
-                                <a href="/hijos/{{ $hijo->id }}" class="btn btn-primary">Ver Detalles</a>
+                                <a href="{{ route('padre_familia.show',['id_alumno'=>$hijo->id_alumno ]) }}" class="btn btn-primary">Ver Detalles</a>
                             </div>
                         </div>
                     </div>

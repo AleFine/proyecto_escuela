@@ -26,6 +26,6 @@ class Competencia extends Model
 
     public function calificaciones()
     {
-        return $this->hasMany(Calificacion::class, 'id_competencia');
+        return $this->hasOne(Calificacion::class, 'id_competencia');
     }
 }

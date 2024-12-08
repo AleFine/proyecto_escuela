@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controladores\CursoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Roles\AdminController;
@@ -106,5 +107,13 @@ Route::prefix('areas')->group(function () {
 
 Route::get('/get-ciudades', [AlumnoController::class, 'getCiudades'])->name('alumnos.get-ciudades');
 Route::get('/get-distritos', [AlumnoController::class, 'getDistritos'])->name('alumnos.get-distritos');
+
+Route::get('/hijos/{id_alumno}', [PadreFamiliaController::class, 'show'])->name('padre_familia.show');
+
+Route::resource('cursos', CursoController::class);
+Route::get('/cursos_index/{nivel}', [CursoController::class, 'index'])->name('cursos.index');
+Route::get('/cursos_create/{nivel}', [CursoController::class, 'create'])->name('cursos.create');
+Route::get('/cursos_edit/{curso}', [CursoController::class, 'edit'])->name('cursos.edit');
+
 
 require __DIR__.'/auth.php';
