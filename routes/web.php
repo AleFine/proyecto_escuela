@@ -12,11 +12,13 @@ use App\Http\Controllers\Controladores\NivelController;
 use App\Http\Controllers\Controladores\SeccionController;
 use App\Http\Controllers\Controladores\GradoController;
 use App\Http\Controllers\Controladores\AreaAcademicaController;
+use App\Http\Controllers\Controladores\PeriodoController;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 
 use Illuminate\Support\Facades\Storage;
 use Google\Cloud\Storage\StorageClient;
+use App\Http\Controllers\Controladores\MatriculasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -115,5 +117,17 @@ Route::get('/cursos_index/{nivel}', [CursoController::class, 'index'])->name('cu
 Route::get('/cursos_create/{nivel}', [CursoController::class, 'create'])->name('cursos.create');
 Route::get('/cursos_edit/{curso}', [CursoController::class, 'edit'])->name('cursos.edit');
 
+Route::middleware('auth')->prefix('periodos')->group(function () {
+    Route::get('/', [PeriodoController::class, 'index'])->name('periodos.index');
+    Route::get('/create', [PeriodoController::class, 'create'])->name('periodos.create');
+    Route::post('/', [PeriodoController::class, 'store'])->name('periodos.store');
+    Route::get('/{periodo}', [PeriodoController::class, 'show'])->name('periodos.show');
+    Route::get('/{periodo}/edit', [PeriodoController::class, 'edit'])->name('periodos.edit');
+    Route::put('/{periodo}', [PeriodoController::class, 'update'])->name('periodos.update');
+    Route::delete('/{periodo}', [PeriodoController::class, 'destroy'])->name('periodos.destroy');
+});
+
+Route::resource('matriculas', MatriculasController::class);
+Route::post('matriculas/{id_matricula}/cursos', [MatriculasController::class, 'addCurso'])->name('matriculas.cursos.store');
 
 require __DIR__.'/auth.php';

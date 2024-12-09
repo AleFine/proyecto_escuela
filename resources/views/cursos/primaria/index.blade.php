@@ -38,7 +38,8 @@
                                     <td>{{ $curso->nombre_curso }}</td>
                                     <td>{{ $curso->areaAcademica->nombre_area }}</td>
                                     <td class="d-flex justify-content-center align-items-center gap-2">
-                                        <a title="Editar" href="{{ route('cursos.edit', $curso->id_curso) }}">
+                                        <a title="Editar" 
+                                        href="{{ route('cursos.edit', $curso->id_curso) }}">
                                             <button type="submit" class="btn btn-sm btn-info">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
                                                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
@@ -48,7 +49,9 @@
                                                 </svg>
                                             </button>
                                         </a>
-                                        <form action="{{ route('cursos.destroy', ['curso'=>$curso->id_curso]) }}" method="POST" onsubmit="confirmarEliminacion(event, this)">
+                                        <form action="{{ route('cursos.destroy', ['curso'=>$curso->id_curso]) }}" 
+                                        method="POST" 
+                                        onsubmit="confirmarEliminacion(event, this)">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">
