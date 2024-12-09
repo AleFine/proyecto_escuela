@@ -39,7 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->middleware('role:' . User::ROLES[0]);
 
     // Ruta para el dashboard del profesor
-    Route::get('/profesor/dashboard', [ProfesorController::class, 'index'])
+    Route::get('/profesor/dashboard/{gmail}', [ProfesorController::class, 'index'])
         ->name('profesor.dashboard')
         ->middleware('role:' . User::ROLES[1]);
 
@@ -114,6 +114,8 @@ Route::resource('cursos', CursoController::class);
 Route::get('/cursos_index/{nivel}', [CursoController::class, 'index'])->name('cursos.index');
 Route::get('/cursos_create/{nivel}', [CursoController::class, 'create'])->name('cursos.create');
 Route::get('/cursos_edit/{curso}', [CursoController::class, 'edit'])->name('cursos.edit');
+
+Route::get('/profesor_alumnos/{curso}', [ProfesorController::class, 'show'])->name('profesor.show');
 
 
 require __DIR__.'/auth.php';

@@ -50,7 +50,7 @@ class RegisteredUserController extends Controller
         if ($user->isAdmin()) {
             return redirect()->route('admin.dashboard');
         } elseif ($user->isProfesor()) {
-            return redirect()->route('profesor.dashboard');
+            return redirect()->route('profesor.dashboard',['gmail' => $request->email]);
         } else {
             return redirect()->route('padre_familia.dashboard', ['gmail' => $request->email]);
         }

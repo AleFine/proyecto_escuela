@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
 
         return match ($user->rol) {
             'admin' => redirect()->intended(route('admin.dashboard')),
-            'profesor' => redirect()->intended(route('profesor.dashboard')),
+            'profesor' => redirect()->intended(route('profesor.dashboard', ['gmail' => $request->email])),
             'padre_familia' => redirect()->intended(route('padre_familia.dashboard', ['gmail' => $request->email])),
             default => throw new \Exception('Rol de usuario no válido'),
         };
@@ -45,7 +45,7 @@ class AuthenticatedSessionController extends Controller
 
             return match ($user->rol) {
                 'admin' => redirect()->route('admin.dashboard'),
-                'profesor' => redirect()->route('profesor.dashboard'),
+                'profesor' => redirect()->route('profesor.dashboard',['gmail' => $user->email]),
                 'padre_familia' => redirect()->route('padre_familia.dashboard', ['gmail' => $user->email]),
                 default => throw new \Exception('Rol de usuario no válido'),
             };
