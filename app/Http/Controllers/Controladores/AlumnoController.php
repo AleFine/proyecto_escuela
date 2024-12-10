@@ -71,29 +71,29 @@ class AlumnoController extends Controller
 
             if ($request->hasFile('imagen_rostro')) {
                 $file = $request->file('imagen_rostro');
-                
+
                 if (!$file->isValid()) {
                     throw new \Exception('El archivo de imagen no es válido');
                 }
-    
+
                 $fileName = time() . '_' . $file->getClientOriginalName();
                 $filePath = 'alumnos/' . $fileName;
-    
+
                 $fileContent = file_get_contents($file->getRealPath());
-    
+
                 $storage = new \Google\Cloud\Storage\StorageClient([
                     'projectId' => config('filesystems.disks.gcs.project_id'),
                     'keyFilePath' => config('filesystems.disks.gcs.key_file'),
                 ]);
-    
+
                 $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
-                
+
                 $object = $bucket->upload($fileContent, [
                     'name' => $filePath,
                 ]);
-    
+
                 $data['imagen_rostro'] = 'https://storage.googleapis.com/' . config('filesystems.disks.gcs.bucket') . '/' . $filePath;
-    
+
                 Log::info('Imagen subida exitosamente', [
                     'path' => $filePath,
                     'url' => $data['imagen_rostro']
@@ -101,27 +101,27 @@ class AlumnoController extends Controller
             }else {
                 $data['imagen_rostro'] = self::DEFAULT_IMAGE;
             }
-    
+
             Alumno::create($data);
-            
+
             return redirect()
                 ->route('alumnos.index')
                 ->with('datos', 'Registro Nuevo Guardado...!');
-    
+
         } catch (\Exception $e) {
             Log::error('Error al crear alumno:', [
                 'error' => $e->getMessage(),
                 'file' => $e->getFile(),
                 'line' => $e->getLine()
             ]);
-    
+
             return redirect()
                 ->back()
                 ->withInput()
                 ->withErrors(['imagen_rostro' => 'Error: ' . $e->getMessage()]);
         }
-    
-    
+
+
     }
 
     public function edit($id)
@@ -129,7 +129,7 @@ class AlumnoController extends Controller
         try {
             $alumno = Alumno::findOrFail($id);
             $regiones = Region::all();
-            
+
             $region = Region::where('nombre', $alumno->region)->first();
             $ciudad = Ciudad::where('nombre', $alumno->ciudad)->first();
             $distrito = Distrito::where('nombre', $alumno->distrito)->first();
@@ -167,7 +167,7 @@ class AlumnoController extends Controller
                     'ciudad' => 'required|max:50',
                     'distrito' => 'required|max:50',
                     'telefono' => 'required|max:9',
-                    'imagen_rostro' => 'nullable|image|max:2048', 
+                    'imagen_rostro' => 'nullable|image|max:2048',
                 ],
                 [
                     'nombre.required' => 'Ingrese el nombre del alumno',
@@ -206,34 +206,34 @@ class AlumnoController extends Controller
                 $file = $request->file('imagen_rostro');
                 $fileName = time() . '_' . $file->getClientOriginalName();
                 $filePath = 'alumnos/' . $fileName;
-                
+
                 if ($alumno->imagen_rostro) {
                     $this->deleteImageFromStorage($alumno->imagen_rostro);
                 }
-    
+
                 $storage = new \Google\Cloud\Storage\StorageClient([
                     'projectId' => config('filesystems.disks.gcs.project_id'),
                     'keyFilePath' => config('filesystems.disks.gcs.key_file'),
                 ]);
-    
+
                 $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
                 $bucket->upload(
                     file_get_contents($file->getRealPath()),
                     ['name' => $filePath]
                 );
-    
+
                 $data['imagen_rostro'] = 'https://storage.googleapis.com/' . config('filesystems.disks.gcs.bucket') . '/' . $filePath;
             }
 
             $alumno->update($data);
             return redirect()->route('alumnos.index')->with('datos', 'Registro Actualizado...!');
-        
+
         } catch (\Exception $e) {
             Log::error('Error en actualización:', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);
-            
+
             return redirect()
                 ->back()
                 ->withInput()
@@ -260,7 +260,7 @@ class AlumnoController extends Controller
     {
         try {
             $alumno = Alumno::findOrFail($id);
-            
+
             if ($alumno->imagen_rostro && $alumno->imagen_rostro !== self::DEFAULT_IMAGE) {
                 if (!$this->deleteImageFromStorage($alumno->imagen_rostro)) {
                     Log::warning('No se pudo eliminar la imagen al borrar el alumno', [
@@ -269,7 +269,7 @@ class AlumnoController extends Controller
                     ]);
                 }
             }
-    
+
             $alumno->delete();
             return redirect()
                 ->route('alumnos.index')
@@ -279,7 +279,7 @@ class AlumnoController extends Controller
                 'error' => $e->getMessage(),
                 'alumno_id' => $id
             ]);
-            
+
             return redirect()
                 ->back()
                 ->withErrors(['error' => 'Error al eliminar el registro: ' . $e->getMessage()]);
@@ -298,14 +298,14 @@ class AlumnoController extends Controller
 
             $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
             $filePath = str_replace('https://storage.googleapis.com/' . config('filesystems.disks.gcs.bucket') . '/', '', $imageUrl);
-            
+
             if ($bucket->object($filePath)->exists()) {
                 $bucket->object($filePath)->delete();
                 Log::info('Imagen eliminada exitosamente', ['path' => $filePath]);
                 return true;
             }
-            
-            return true; 
+
+            return true;
         } catch (\Exception $e) {
             Log::error('Error al eliminar imagen:', [
                 'error' => $e->getMessage(),

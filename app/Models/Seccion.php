@@ -23,4 +23,8 @@ class Seccion extends Model
     {
         return $this->hasMany(Matricula::class, 'id_seccion');
     }
+
+    public function docente_asignado(){
+        return $this->hasMany(DocenteAsignado::class, 'id_seccion');
+    }
 }

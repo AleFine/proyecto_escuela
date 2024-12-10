@@ -32,7 +32,7 @@ class Curso extends Model
 
     public function profesores()
     {
-        return $this->belongsToMany(Profesor::class, 'profesor_cursos', 'id_curso', 'id_profesor');
+        return $this->belongsToMany(Profesor::class, 'profesor_cursos', 'id_curso', 'id_docente_asignado');
     }
 
     public function matricula()

@@ -15,8 +15,7 @@ class PadreFamiliaController extends Controller
     {
         $id_padre = User::where("email",$gmail)->first()->id;
         $padre = PadreFamilia::where("id",$id_padre)->first();
-        $hijos = $padre->hijos;
-        return view('padre_familia.dashboard',compact('padre','hijos'));
+        return view('padre_familia.dashboard',compact('padre'));
     }
 
     public function show($id)

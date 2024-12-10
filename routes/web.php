@@ -1,11 +1,16 @@
 <?php
 
+
+use App\Http\Controllers\Controladores\PadreController;
+use App\Http\Controllers\Controladores\ProfeController; //son para ,os crud
+
+
 use App\Http\Controllers\Controladores\CursoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Roles\AdminController;
 use App\Http\Controllers\Roles\ProfesorController;
-use App\Http\Controllers\Roles\PadreFamiliaController;
+use App\Http\Controllers\Roles\PadreFamiliaController; //son para los roles
 use App\Http\Controllers\Controladores\AlumnoController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Controladores\NivelController;
@@ -13,6 +18,7 @@ use App\Http\Controllers\Controladores\SeccionController;
 use App\Http\Controllers\Controladores\GradoController;
 use App\Http\Controllers\Controladores\AreaAcademicaController;
 use App\Models\User;
+
 use Illuminate\Support\Facades\Log;
 
 use Illuminate\Support\Facades\Storage;
@@ -115,7 +121,25 @@ Route::get('/cursos_index/{nivel}', [CursoController::class, 'index'])->name('cu
 Route::get('/cursos_create/{nivel}', [CursoController::class, 'create'])->name('cursos.create');
 Route::get('/cursos_edit/{curso}', [CursoController::class, 'edit'])->name('cursos.edit');
 
-Route::get('/profesor_alumnos/{curso}', [ProfesorController::class, 'show'])->name('profesor.show');
+Route::get('/profesor_alumnos/', [ProfesorController::class, 'show'])->name('profesor.show');
+
+//PARA LAS VOSTAS Y CREACION DE LOS CRUDS PADRE Y PROFEE JEJEJE:
+
+Route::resource('padres', PadreController::class);
+Route::get('/padre_create', [PadreController::class, 'create'])->name('padres.create');
+Route::get('/asignar_hijo/{padre}', [PadreController::class, 'asignar'])->name('padres.asignar');
+Route::get('/padre_visualizar/{padre}', [PadreController::class, 'visualizar'])->name('padres.visualizar');
+Route::get('/padre_buscar', [PadreController::class, 'search'])->name('padres.search');
+Route::post('/asignar_relacion', [PadreController::class,'asignar_relacion'])->name('padres.asignar_relacion');
+Route::delete('/eliminar_relacion/{padre}/{estudiante}', [PadreController::class,'eliminar_relacion'])->name('padres.eliminar_relacion');
+
+
+
+Route::resource('profes', ProfeController::class);
+Route::get('/profe_create', [ProfeController::class, 'create'])->name('profes.create');
+Route::get('/profe_visualizar/{profesor}', [ProfeController::class, 'visualizar'])->name('profes.visualizar');
+Route::get('/profe_buscar', [ProfeController::class, 'search'])->name('profes.search');
+Route::get('/asignar_profesor/{profesor}', [ProfeController::class, 'asignar'])->name('profes.asignar');
 
 
 require __DIR__.'/auth.php';

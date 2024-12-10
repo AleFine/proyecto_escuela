@@ -33,4 +33,14 @@ class Profesor extends Model
     {
         return $this->belongsToMany(Curso::class, 'profesor_cursos', 'id_profesor', 'id_curso');
     }
+
+    public function docente_asignado(){
+        return $this->hasMany(DocenteAsignado::class, 'id_profesor');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id','user_id');
+    }
+
 }

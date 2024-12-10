@@ -117,8 +117,15 @@
                           </ul>
                           <ul class="menu-sub">
                               <li class="menu-item active">
-                                  <a href="#" class="menu-link">
-                                      <div data-i18n="Analytics">Personal</div>
+                                  <a href="{{ route('profes.index') }}" class="menu-link">
+                                      <div data-i18n="Analytics">Docentes</div>
+                                  </a>
+                              </li>
+                          </ul>
+                          <ul class="menu-sub">
+                              <li class="menu-item active">
+                                  <a href="{{ route('padres.index') }}" class="menu-link">
+                                      <div data-i18n="Analytics">Padres de Familia</div>
                                   </a>
                               </li>
                           </ul>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Controladores;
 use App\Http\Controllers\Controller;
-use App\Models\Nivel;
 use App\Models\Grado;
 use App\Models\Curso;
 use App\Models\AreaAcademica;
