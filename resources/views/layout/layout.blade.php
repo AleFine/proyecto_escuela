@@ -129,6 +129,13 @@
                                   </a>
                               </li>
                           </ul>
+                          <ul class="menu-sub">
+                              <li class="menu-item active">
+                                  <a href="{{ route('periodos.index') }}" class="menu-link">
+                                      <div data-i18n="Analytics">Periodos</div>
+                                  </a>
+                              </li>
+                          </ul>
                     </li>
                     <!-- Layouts -->
                     <li class="menu-item">
