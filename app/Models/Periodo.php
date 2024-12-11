@@ -23,4 +23,8 @@ class Periodo extends Model
     {
         return $this->hasMany(Matricula::class, 'id_periodo');
     }
+
+    public function docente_asignado(){
+        return $this->hasMany(DocenteAsignado::class, 'id_periodo');
+    }
 }

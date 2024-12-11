@@ -26,4 +26,8 @@ class DocenteAsignado extends Model
         return $this->belongsToMany(Curso::class, 'profesor_cursos', 'id_docente_asignado', 'id_curso');
     }
 
+    public function periodo(){
+        return $this->belongsTo(Periodo::class, 'id_periodo');
+    }
+
 }

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Alumno;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 class PadreController extends Controller
 {
@@ -42,14 +44,17 @@ class PadreController extends Controller
             'updated_at' => null,
         ]);
 
-        DB::statement('CALL sp_insert_padre(?, ?, ?, ?)', [
+        $contra_hash = Hash::make($request->input('dni'));
+
+        DB::statement('CALL sp_insert_padre(?, ?, ?, ?, ?)', [
             $request->input('nombre'),
             $request->input('apellido'),
+            $contra_hash,
             $request->input('dni'),
             $id_padre_familia,
         ]);
 
-        return redirect()->route('padres.index')->with('success', 'Curso creado correctamente');
+        return redirect()->route('padres.index')->with('success', 'Padre creado correctamente');
     }
 
     public function show($id){

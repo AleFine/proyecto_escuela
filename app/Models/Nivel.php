@@ -11,11 +11,16 @@ class Nivel extends Model
 
     protected $table = 'niveles';
     protected $primaryKey = 'id_nivel';
- 
+
     protected $fillable = ['nombre_nivel', 'turno'];
 
     public function grados()
     {
         return $this->hasMany(Grado::class, 'id_nivel');
     }
+
+    public function profesores(){
+        return $this->hasMany(Profesor::class,'id_nivel');
+    }
+
 }

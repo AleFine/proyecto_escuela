@@ -59,6 +59,16 @@
                             </select>
                         </div>
 
+                        <div class="form-group my-3">
+                            <label for="nivel">Departamento Académico</label>
+                            <select name="nivel" class="form-control" id="nivel" required>
+                                <option value="">Selecciona un Nivel</option>
+                                @foreach($niveles as $nivel)
+                                    <option value="{{ $nivel->id_nivel }}">{{ $nivel->nombre_nivel }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group my-3 d-flex gap-3">
                             <button type="submit" class="btn btn-primary btn-block">Crear</button>
                             <a href="{{ route('profes.index') }}" class="btn btn-secondary btn-block">Cancelar</a>

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('profesores', function (Blueprint $table) {
-            $table->id('id_profesor');  
+            $table->id('id_profesor');
             $table->string('nombre');
             $table->string('apellido');
             $table->string('dni', 8)->unique();
@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('direccion', 100);
             $table->string('telefono', 15);
             $table->foreignId('id_area_academica')->references('id_area_academica')->on('areas_academicas')->onDelete('cascade');
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');  
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('id_nivel')->references('id_nivel')->on('niveles')->onDelete('cascade');
             $table->timestamps();
         });
     }

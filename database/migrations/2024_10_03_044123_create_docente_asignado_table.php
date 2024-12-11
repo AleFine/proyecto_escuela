@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('docente_asignado', function (Blueprint $table) {
             $table->id('id_docente_asignado');
-            $table->foreignId('id_profesor')->references('id_profesor')->on('profesores')->onDelete('cascade');  
-            $table->foreignId('id_seccion')->references('id_seccion')->on('secciones')->onDelete('cascade'); 
+            $table->foreignId('id_profesor')->references('id_profesor')->on('profesores')->onDelete('cascade');
+            $table->foreignId('id_seccion')->references('id_seccion')->on('secciones')->onDelete('cascade');
+            $table->foreignId('id_periodo')->references('id_periodo')->on('periodos')->onDelete('cascade');
             $table->timestamps();
         });
     }

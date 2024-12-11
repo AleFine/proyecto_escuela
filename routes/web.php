@@ -139,7 +139,21 @@ Route::resource('profes', ProfeController::class);
 Route::get('/profe_create', [ProfeController::class, 'create'])->name('profes.create');
 Route::get('/profe_visualizar/{profesor}', [ProfeController::class, 'visualizar'])->name('profes.visualizar');
 Route::get('/profe_buscar', [ProfeController::class, 'search'])->name('profes.search');
-Route::get('/asignar_profesor/{profesor}', [ProfeController::class, 'asignar'])->name('profes.asignar');
+Route::get('/asignar_profesor_primaria/{profesor}', [ProfeController::class, 'asignar_primaria'])->name('profes.asignar_primaria');
+Route::get('/asignar_profesor_secundaria/{profesor}', [ProfeController::class, 'asignar_secundaria'])->name('profes.asignar_secundaria');
 
+Route::post('/asignar_seccion_primaria', [ProfeController::class, 'asignar_seccion_primaria'])->name('profes.asignar_seccion_primaria');
+
+Route::post('/asignar_seccion_secundaria', [ProfeController::class, 'asignar_seccion_secundaria'])->name('profes.asignar_seccion_secundaria');
+
+Route::get('/mostrar_cursos_primaria/{profesor}/{seccion}', [ProfeController::class, 'mostrar_cursos_primaria'])->name('profes.mostrar_cursos_primaria');
+
+Route::get('/asignar_curso_secundaria/{profesor}/{seccion}', [ProfeController::class, 'asignar_curso_secundaria'])->name('profes.asignar_curso_secundaria');
+
+Route::post('/registrar_curso_secundaria', [ProfeController::class, 'registrar_curso_secundaria'])->name('profes.registrar_curso_secundaria');
+
+
+Route::get('/profe/get_grados/{nivelId}', [ProfeController::class, 'getGrados'])->name('profes.getGrados');
+Route::get('/profe/get_secciones/{gradoId}', [ProfeController::class, 'getSecciones'])->name('profes.getSecciones');
 
 require __DIR__.'/auth.php';

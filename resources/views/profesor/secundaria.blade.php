@@ -3,17 +3,15 @@
 @section('contenido')
 
 <main class="container py-5">
-    <!-- Encabezado -->
     <h3 class="font-weight-bold mb-4 text-primary">
         Docente: {{ $profesor->nombre }} {{ $profesor->apellido }}
     </h3>
 
-    @if(!$docente_seccion)
+    @if($docente_seccion->count()==0)
         <div class="alert alert-warning text-center" role="alert">
             Aún no estas asignado a ningún curso
         </div>
     @else
-        <!-- Tarjeta de Información General -->
         <div class="card bg-light shadow-sm p-4 mb-5">
             <h1 class="text-center text-primary mb-4">Cursos Disponibles</h1>
             <div class="d-flex justify-content-between">
@@ -56,11 +54,6 @@
                 @endif
             @endforeach
         </div>
-        @if($i > 0)
-            <div class="alert alert-warning text-center mt-4" role="alert">
-                El docente no está asignado a ningún curso
-            </div>
-        @endif
     @endif
 </main>
 

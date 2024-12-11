@@ -43,4 +43,8 @@ class Profesor extends Model
         return $this->hasOne(User::class, 'id','user_id');
     }
 
+    public function nivel(){
+        return $this->belongsTo(Nivel::class, 'id_nivel');
+    }
+
 }

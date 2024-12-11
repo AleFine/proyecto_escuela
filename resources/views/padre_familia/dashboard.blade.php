@@ -19,7 +19,7 @@
         </div>
     @else
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            @foreach($padre->$hijos as $hijo)
+            @foreach($padre->hijos as $hijo)
                 <div class="col">
                     <div class="card shadow-sm h-100">
                         <div class="d-flex justify-content-center mt-3">

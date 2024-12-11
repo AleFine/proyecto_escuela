@@ -34,6 +34,7 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Fecha de Ingreso</th>
+                    <th>Nivel</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -45,8 +46,9 @@
                         <td>{{ $profesor->nombre}}</td>
                         <td>{{ $profesor->apellido}}</td>
                         <td>{{ $profesor->fecha_ingreso}}</td>
+                        <td>{{ $profesor->nivel->nombre_nivel}}</td>
                         <td class="d-flex justify-content-center align-items-center gap-2">
-                            <a title="Editar" href="{{ route('profes.show', $profesor->id_profesor) }}">
+                            <a title="Editar" href="{{  route('profes.show', $profesor->id_profesor) }}">
                                 <button type="submit" class="btn btn-sm btn-info">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
                                         <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
@@ -65,6 +67,11 @@
                                     </svg>
                                 </button>
                             </form>
+                            <a title="Asignar Sección" href="{{ $profesor->id_nivel == 1 ?  route('profes.asignar_primaria', ['profesor'=>$profesor->id_profesor]) :  route('profes.asignar_secundaria', ['profesor'=>$profesor->id_profesor]) }}">
+                                <button type="submit" class="btn btn-sm btn-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM7.25 4h1.5v3.25H12v1.5H8.75V12h-1.5V8.75H4v-1.5h3.25z"/></svg>
+                                </button>
+                            </a>
 
                             <a title="Visualizar User" href="{{ route('profes.visualizar', ['profesor'=>$profesor->id_profesor]) }}">
                                 <button type="submit" class="btn btn-sm btn-info">
@@ -77,7 +84,7 @@
             </tbody>
         </table>
         @else
-            <p class="text-center">No hay padres registrados</p>
+            <p class="text-center">No hay docentes registrados</p>
         @endif
     </div>
     <div class="d-flex justify-content-center mt-4">

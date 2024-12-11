@@ -19,7 +19,7 @@ class ProfesorController extends Controller
         $cantidad = $docente_seccion->count();
 
         if($cantidad == 0){
-            return view('profesor.secundaria', compact('profesor'));
+            return view('profesor.secundaria', compact('profesor','docente_seccion'));
         }
         else{
             $nivel = $docente_seccion[0]->seccion->grado->id_nivel;

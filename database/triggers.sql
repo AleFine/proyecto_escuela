@@ -5,19 +5,18 @@ DELIMITER $$
 CREATE PROCEDURE sp_insert_padre(
     IN nombre VARCHAR(255),
     IN apellido VARCHAR(255),
-    IN dni VARCHAR(8),
+    IN contra_hash VARCHAR(255),
+    IN dni char(8),
     IN id_padre INT
 )
 BEGIN
     DECLARE email VARCHAR(255);
-    DECLARE contra_hash VARCHAR(255);
     DECLARE user_id INT;
 
     SET email = CONCAT(LEFT(REPLACE(LOWER(nombre), ' ', ''),2),
                    REPLACE(LOWER(apellido), ' ', ''), 
                    LEFT(dni, 3), 
                    '@gmail.com');
-    SET contra_hash = MD5(dni);
     
     INSERT INTO users (name, email, password, rol, created_at, updated_at)
     VALUES (nombre, email, contra_hash, 'padre_familia', null, null);
@@ -35,19 +34,18 @@ DELIMITER $$
 CREATE PROCEDURE sp_insert_profesor(
     IN nombre VARCHAR(255),
     IN apellido VARCHAR(255),
-    IN dni VARCHAR(8),
+    IN contra_hash VARCHAR(255),
+    IN dni char(8),
     IN id_profe INT
 )
 BEGIN
     DECLARE email VARCHAR(255);
-    DECLARE contra_hash VARCHAR(255);
     DECLARE id INT;
 
     SET email = CONCAT(LEFT(REPLACE(LOWER(nombre), ' ', ''),2),
                    REPLACE(LOWER(apellido), ' ', ''), 
                    LEFT(dni, 3), 
                    '@gmail.com');
-    SET contra_hash = MD5(dni);
     
     INSERT INTO users (name, email, password, rol, created_at, updated_at)
     VALUES (nombre, email, contra_hash, 'profesor', null, null);
