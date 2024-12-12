@@ -103,6 +103,22 @@ class MatriculasController extends Controller
         ]);
     }
 
+    foreach ($cursos_matricular as $curso) {
+        for($i=1; $i<4 ; $i++){
+            for($j=1; $j<4 ; $j++){
+                DB::table('calificaciones')->insert([
+                    'id_matricula' => $id_matricula,
+                    'calificacion' => 'D',
+                    'id_curso' => $curso->id_curso,
+                    'id_competencia' => $j,
+                    'id_unidad' => $i,
+                    'created_at' => null,
+                    'updated_at' => null,
+                ]);
+            }
+        }
+    }
+
     return redirect()->route('matriculas.index')->with('success', 'Matrícula creada exitosamente');
 
 }
@@ -144,6 +160,7 @@ class MatriculasController extends Controller
             if($grado != $grado_viejo){
                 $cursos_matricular = Curso::where('id_grado', $grado)->get();
                 DB::table('matricula_cursos')->where('id_matricula', $id)->delete();
+                DB::table('calificaciones')->where('id_matricula', $id)->delete();
                 foreach ($cursos_matricular as $curso) {
                     DB::table('matricula_cursos')->insert([
                         'id_matricula' => $id,
@@ -152,6 +169,23 @@ class MatriculasController extends Controller
                         'updated_at' => null,
                     ]);
                 }
+
+                foreach ($cursos_matricular as $curso) {
+                    for($i=0; $i<3 ; $i++){
+                        for($j=0; $j<3 ; $j++){
+                            DB::table('calificaciones')->insert([
+                                'id_matricula' => $id,
+                                'calificacion' => 'D',
+                                'id_curso' => $curso->id_curso,
+                                'id_competencia' => $j,
+                                'id_unidad' => $i,
+                                'created_at' => null,
+                                'updated_at' => null,
+                            ]);
+                        }
+                    }
+                }
+
             }
             $matricula->update($data);
             return redirect()->route('matriculas.index')
@@ -173,6 +207,8 @@ class MatriculasController extends Controller
         try {
             $matricula = Matricula::findOrFail($id);
 
+            DB::table('matricula_cursos')->where('id_matricula', $id)->delete();
+            DB::table('calificaciones')->where('id_matricula', $id)->delete();
             DB::table('matricula_cursos')->where('id_matricula', $id)->delete();
 
             $matricula->delete();

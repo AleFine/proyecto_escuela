@@ -26,7 +26,7 @@ class Calificacion extends Model
 
     public function competencia()
     {
-        return $this->belongsTo(Competencia::class, 'id_competencia');
+        return $this->belongsTo(Competencia::class, 'id_competencia', 'id_competencia');
     }
 
     public function matriculas()
