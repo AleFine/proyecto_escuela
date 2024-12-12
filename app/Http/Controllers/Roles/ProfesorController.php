@@ -60,15 +60,20 @@ class ProfesorController extends Controller
     public function asignar_calificacion($curso,$estudiante){
 
         $matricula = Matricula::where('id_alumno',$estudiante)->first();
-
         $estudianteA = Alumno::findOrFail($estudiante);
         $cursoA = Curso::findOrFail($curso);
+
+        $fecha_actual = now();
+        $fecha_inicio = \Carbon\Carbon::parse($matricula->periodo->fecha_inicio);
+        $fecha_fin = \Carbon\Carbon::parse($matricula->periodo->fecha_fin);
+
+        $habilitado = $fecha_actual->between($fecha_inicio, $fecha_fin);
 
         $calificaciones_unidad1 = Calificacion::where('id_matricula',$matricula->id_matricula)->where('id_curso',$curso)->where('id_unidad',1)->orderBy('id_competencia', 'asc')->with('competencia')->get();
         $calificaciones_unidad2 = Calificacion::where('id_matricula',$matricula->id_matricula)->where('id_curso',$curso)->where('id_unidad',2)->orderBy('id_competencia', 'asc')->with('competencia')->get();
         $calificaciones_unidad3 = Calificacion::where('id_matricula',$matricula->id_matricula)->where('id_curso',$curso)->where('id_unidad',3)->orderBy('id_competencia', 'asc')->with('competencia')->get();
 
-        return view('profesor.calificaciones', compact('calificaciones_unidad1','calificaciones_unidad2','calificaciones_unidad3','matricula','estudianteA','cursoA'));
+        return view('profesor.calificaciones', compact('calificaciones_unidad1','calificaciones_unidad2','calificaciones_unidad3','matricula','estudianteA','cursoA','habilitado'  ));
     }
 
     public function calificar_curso(Request $request){

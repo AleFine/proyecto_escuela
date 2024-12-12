@@ -104,8 +104,23 @@
             </table>
         </div>
 
+        @if(!$habilitado)
+            @php
+                $fecha_actual = now();
+                $fecha_inicio = \Carbon\Carbon::parse($matricula->periodo->fecha_inicio);
+                $fecha_fin = \Carbon\Carbon::parse($matricula->periodo->fecha_fin);
+            @endphp
+            <p class="text-danger">
+                @if($fecha_actual->lessThan($fecha_inicio))
+                    Aún no estamos en el período de calificación. El período inicia el {{ $fecha_inicio->format('d/m/Y') }}
+                @elseif($fecha_actual->greaterThan($fecha_fin))
+                    Ya se sobrepasó el período de calificación. El período finalizó el {{ $fecha_fin->format('d/m/Y') }}
+                @endif
+            </p>
+        @endif
+
         <div class="text-end">
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn btn-success" @if(!$habilitado) disabled @endif>
                 <i class="fas fa-save"></i> Guardar Calificaciones
             </button>
         </div>
