@@ -38,4 +38,5 @@ class Matricula extends Model
     {
         return $this->belongsToMany(Curso::class, 'matricula_cursos', 'id_matricula', 'id_curso');
     }
+
 }

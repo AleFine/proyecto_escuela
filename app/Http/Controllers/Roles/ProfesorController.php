@@ -5,7 +5,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Profesor;
 use App\Models\DocenteAsignado;
 use App\Models\Seccion;
+use App\Models\Calificacion;
 use App\Models\Curso;
+use App\Models\Alumno;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -52,6 +54,23 @@ class ProfesorController extends Controller
             $seccion = DocenteAsignado::findOrFail($id_docente_asignado)->seccion;
         }
         return view('profesor.show',compact('matriculas','seccion','curso','profesor'));
+    }
 
+    public function asignar_calificacion($curso,$estudiante){
+        $estudianteA = Alumno::findOrFail($estudiante);
+        $cursoA = Curso::findOrFail($curso);
+
+        $calificaciones_unidad1 = Calificacion::where('id_curso',$curso)->where('id_unidad',1)->orderBy('id_competencia', 'asc')->get();
+
+        $calificaciones_unidad2 = Calificacion::where('id_curso',$curso)->where('id_unidad',2)->orderBy('id_competencia', 'asc')->get();
+
+        $calificaciones_unidad3 = Calificacion::where('id_curso',$curso)->where('id_unidad',3)->orderBy('id_competencia', 'asc')->get();
+
+        return view('profesor.calificaciones', compact('calificaciones_unidad1','calificaciones_unidad2','calificaciones_unidad3'));
+    }
+
+    public function calificar_curso(Request $request){
+        $curso  = $request->input('curso');
+        
     }
 }

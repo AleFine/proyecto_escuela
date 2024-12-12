@@ -172,4 +172,7 @@ Route::resource('matriculas', MatriculasController::class);
 Route::get('/matricula/get_grados/{nivelId}', [MatriculasController::class, 'getGrados'])->name('matriculas.getGrados');
 Route::get('/matricula/get_secciones/{gradoId}', [MatriculasController::class, 'getSecciones'])->name('matriculas.getSecciones');
 
+Route::get('/profesor/calificacion/{curso}/{estudiante}', [ProfesorController::class, 'asignar_calificacion'])->name('profesor.asignar_calificacion');
+Route::post('/profesor_assing/calificar', [ProfesorController::class, 'calificar_curso'])->name('profesor.calificar_curso');
+
 require __DIR__.'/auth.php';

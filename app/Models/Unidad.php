@@ -19,8 +19,8 @@ class Unidad extends Model
         return $this->belongsTo(Periodo::class, 'id_periodo');
     }
 
-    public function competencias()
+    public function calificaciones()
     {
-        return $this->hasMany(Competencia::class, 'id_unidad');
+        return $this->hasMany(Calificacion::class, 'id_unidad');
     }
 }

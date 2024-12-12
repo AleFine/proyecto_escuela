@@ -11,21 +11,10 @@ class Competencia extends Model
 
     protected $table = 'competencias';
     protected $primaryKey = 'id_competencia';
-
-    protected $fillable = ['nombre_competencia', 'descripcion', 'id_unidad', 'id_curso'];
-
-    public function unidad()
-    {
-        return $this->belongsTo(Unidad::class, 'id_unidad');
-    }
-
-    public function curso()
-    {
-        return $this->belongsTo(Curso::class, 'id_curso');
-    }
+    protected $fillable = ['nombre_competencia'];
 
     public function calificaciones()
     {
-        return $this->hasOne(Calificacion::class, 'id_competencia');
+        return $this->hasMany(Calificacion::class, 'id_competencia');
     }
 }

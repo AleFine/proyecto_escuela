@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('id_unidad')->references('id_unidad')->on('unidades')->onDelete('cascade');
             $table->foreignId('id_curso')->references('id_curso')->on('cursos')->onDelete('cascade');
             $table->foreignId('id_competencia')->references('id_competencia')->on('competencias')->onDelete('cascade');
+            $table->foreignId('id_matricula')->references('id_matricula')->on('matriculas')->onDelete('cascade');
             $table->timestamps();
         });
     }
