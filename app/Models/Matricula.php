@@ -39,4 +39,8 @@ class Matricula extends Model
         return $this->belongsToMany(Curso::class, 'matricula_cursos', 'id_matricula', 'id_curso');
     }
 
+    public function grado()
+{
+    return $this->belongsTo(Grado::class, 'id_grado');
+}
 }
