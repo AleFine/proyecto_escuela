@@ -152,6 +152,14 @@
                         </ul>
                         <ul class="menu-sub">
                             <li class="menu-item">
+                                <a href="{{ route('reporte.index_global') }}" class="menu-link">
+                                    <div data-i18n="Without Menu">Generar Reporte Global</div>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="menu-sub">
+                            <li class="menu-item">
                                 <a href="{{ route('reporte.index_admin') }}" class="menu-link">
                                     <div data-i18n="Without Menu">Generar Reporte Por Alumno</div>
                                 </a>

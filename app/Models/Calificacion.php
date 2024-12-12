@@ -33,4 +33,10 @@ class Calificacion extends Model
     {
         return $this->belongsTo(Matricula::class, 'id_matricula');
     }
+
+    public function matricula()
+{
+    return $this->belongsTo(Matricula::class, 'id_matricula');
+}
+
 }

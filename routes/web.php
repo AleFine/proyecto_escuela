@@ -19,6 +19,7 @@ use App\Http\Controllers\Controladores\GradoController;
 use App\Http\Controllers\Controladores\AreaAcademicaController;
 use App\Http\Controllers\Controladores\PeriodoController;
 use App\Http\Controllers\Controladores\ReportePorAlumnoController;
+use App\Http\Controllers\Controladores\ReporteGlobal;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Log;
@@ -26,6 +27,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Google\Cloud\Storage\StorageClient;
 use App\Http\Controllers\Controladores\MatriculasController;
+use App\Http\Controllers\ReporteGlobalController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,7 +90,7 @@ Route::prefix('secciones')->group(function () {
     Route::get('/', [SeccionController::class, 'index'])->name('secciones.index');
     Route::get('/create', [SeccionController::class, 'create'])->name('secciones.create');
     Route::post('/', [SeccionController::class, 'store'])->name('secciones.store');
-    Route::get('/{id_seccion}', [SeccionController::class, 'show'])->name('secciones.show');
+    Route::get('/seccion/{id_seccion}', [SeccionController::class, 'show'])->name('secciones.show');
     Route::get('/{id_seccion}/edit', [SeccionController::class, 'edit'])->name('secciones.edit');
     Route::put('/{id_seccion}', [SeccionController::class, 'update'])->name('secciones.update');
     Route::delete('/{id_seccion}', [SeccionController::class, 'destroy'])->name('secciones.destroy');
@@ -186,7 +189,10 @@ Route::post('/profesor_assing/calificar', [ProfesorController::class, 'calificar
 
 
 Route::get('/reporte/index_admin', [ReportePorAlumnoController::class, 'index'])->name('reporte.index_admin');
+Route::get('/reporte/index_global', [ReporteGlobalController::class, 'index'])->name('reporte.index_global');
 Route::post('/reporte_nota/alumno', [ReportePorAlumnoController::class, 'show'])->name('reporte.reporte_notas');
+Route::post('/reporte_global', [ReporteGlobalController::class, 'show'])->name('reporte.reporte_global');
+
 
 Route::get('/reporte/get_grados/{nivelId}', [ReportePorAlumnoController::class, 'getGrados'])->name('matriculas.getGrados');
 Route::get('/reporte/get_secciones/{gradoId}', [ReportePorAlumnoController::class, 'getSecciones'])->name('matriculas.getSecciones');
