@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Google\Cloud\Storage\StorageClient;
 use App\Http\Controllers\Controladores\MatriculasController;
+use App\Http\Controllers\Controladores\ReporteController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -182,5 +184,8 @@ Route::get('/matricula/get_secciones/{gradoId}', [MatriculasController::class, '
 
 Route::get('/profesor/calificacion/{curso}/{estudiante}', [ProfesorController::class, 'asignar_calificacion'])->name('profesor.asignar_calificacion');
 Route::post('/profesor_assing/calificar', [ProfesorController::class, 'calificar_curso'])->name('profesor.calificar_curso');
+
+Route::get('alumno/{id_alumno}/reporte-notas', [ReporteController::class, 'generarReporteNotas'])
+    ->name('reporte.notas');    
 
 require __DIR__.'/auth.php';
