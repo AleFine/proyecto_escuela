@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\AreaAcademica;
 use App\Models\DocenteAsignado;
 use App\Models\Seccion;
+use App\Models\Periodo;
 use App\Models\Nivel;
 use App\Models\Grado;
 use App\Models\Curso;
@@ -144,12 +145,13 @@ class ProfeController extends Controller
         $profesor = Profesor::findOrFail($profesor);
         $docente_asignado = DocenteAsignado::where('id_profesor', $profesor->id_profesor)->first();
         $disabled = $docente_asignado ? true : false;
-        return view('cruds-roles.profesores.asignar-primaria', compact('profesor', 'disabled'));
+        return view('cruds-roles.profesores.asignar-primaria', compact('profesor', 'disabled','periodos'));
     }
 
     public function asignar_secundaria($profesor){
         $profesor = Profesor::findOrFail($profesor);
-        return view('cruds-roles.profesores.asignar-secundaria', compact('profesor'));
+        $periodos = Periodo::all();
+        return view('cruds-roles.profesores.asignar-secundaria', compact('profesor','periodos'));
     }
 
 
@@ -160,7 +162,7 @@ class ProfeController extends Controller
         $id_docente_asignado = DB::table('docente_asignado')->insertGetId([
             'id_profesor' => $id_profesor,
             'id_seccion' => $request->input('seccion'),
-            'id_periodo' => 3,
+            'id_periodo' => $request->input('periodo'),
             'created_at' => null,
             'updated_at' => null,
         ]);
@@ -184,7 +186,7 @@ class ProfeController extends Controller
         DB::table('docente_asignado')->insert([
             'id_profesor' => $id_profesor,
             'id_seccion' => $request->input('seccion'),
-            'id_periodo' => 3,
+            'id_periodo' => $request->input('periodo'),
             'created_at' => null,
             'updated_at' => null,
         ]);

@@ -145,31 +145,10 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div data-i18n="Without Menu">Asignar Estudiante a Sección</div>
+                                <a href="{{ route('matriculas.index') }}" class="menu-link">
+                                    <div data-i18n="Without Menu">Matricular Estudiante</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
-                                <ul class="menu-item " >
-                                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                        <i class="menu-icon tf-icons bx bx-layout"></i>
-                                        <div data-i18n="">Tercio - Superior</div>
-                                    </a>
-                                    <ul class="menu-sub" >
-                                        <li class="menu-item">
-                                            <a href="#" class="menu-link ms-5">
-                                                <div data-i18n="">Nivel Primaria</div>
-                                            </a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="#" class="menu-link ms-5">
-                                                <div data-i18n="">Nivel Secundaria</div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </ul>
-                            </li>
-
                         </ul>
                         <ul class="menu-sub">
                             <li class="menu-item">
@@ -177,7 +156,6 @@
                                     <div data-i18n="Without Menu">Filtar cursos y alumnos</div>
                                 </a>
                             </li>
-
                         </ul>
                     </li>
 

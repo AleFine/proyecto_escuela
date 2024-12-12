@@ -34,6 +34,8 @@
                                     <th>ID</th>
                                     <th>Alumno</th>
                                     <th>Período</th>
+                                    <th>Nivel</th>
+                                    <th>Grado</th>
                                     <th>Sección</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
@@ -45,6 +47,8 @@
                                         <td>{{ $matricula->id_matricula }}</td>
                                         <td>{{ $matricula->alumno->nombre }} {{ $matricula->alumno->apellido }}</td>
                                         <td>{{ $matricula->periodo->nombre_periodo }}</td>
+                                        <td>{{ $matricula->seccion->grado->nivel->nombre_nivel }}</td>
+                                        <td>{{ $matricula->seccion->grado->nombre_grado }}</td>
                                         <td>{{ $matricula->seccion->nombre_seccion }}</td>
                                         <td>
                                             <span class="badge bg-{{ $matricula->estado === 'activo' ? 'success' : 'danger' }}">
@@ -52,15 +56,13 @@
                                             </span>
                                         </td>
                                         <td class="d-flex justify-content-center align-items-center gap-2">
-                                        <a href="#" 
-                                           class="btn btn-info btn-sm" 
-                                           onclick="confirmarAccion(event, '{{ route('matriculas.show', $matricula->id_matricula) }}', false);">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
-                                                <path fill="currentColor" d="M12 4.5C8.5 4.5 5.5 7 3.5 10c-2 3 0 6.5 3.5 6.5s6-2.5 8-5.5c2-3-1.5-6.5-5-6.5zm0 9c-1.5 0-3-1-3-3s1.5-3 3-3 3 1 3 3-1.5 3-3 3z"/>
-                                            </svg>
-                                            
-                                        </a>
-                                            <a title="Editar" 
+                                            <a title="Visualizar Cursos" href="{{ route('matriculas.show', $matricula->id_matricula) }}"
+                                            class="btn btn-info btn-sm">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
+                                                    <path fill="currentColor" d="M12 4.5C8.5 4.5 5.5 7 3.5 10c-2 3 0 6.5 3.5 6.5s6-2.5 8-5.5c2-3-1.5-6.5-5-6.5zm0 9c-1.5 0-3-1-3-3s1.5-3 3-3 3 1 3 3-1.5 3-3 3z"/>
+                                                </svg>
+                                            </a>
+                                            <a title="Editar"
                                                href="{{ route('matriculas.edit', $matricula->id_matricula) }}">
                                                 <button type="submit" class="btn btn-sm btn-info">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
@@ -71,8 +73,8 @@
                                                     </svg>
                                                 </button>
                                             </a>
-                                            <form action="{{ route('matriculas.destroy', $matricula->id_matricula) }}" 
-                                                  method="POST" 
+                                            <form action="{{ route('matriculas.destroy', $matricula->id_matricula) }}"
+                                                  method="POST"
                                                   class="d-inline"
                                                   onsubmit="confirmarAccion(event, this, true)">
                                                 @csrf
@@ -98,7 +100,7 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection
 
 @section('script')
     <script>

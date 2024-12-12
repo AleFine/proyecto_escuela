@@ -37,6 +37,14 @@
                                     <td>{{ $matricula->periodo->nombre_periodo }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Nivel</th>
+                                    <td>{{ $matricula->seccion->grado->nivel->nombre_nivel }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Grado</th>
+                                    <td>{{ $matricula->seccion->grado->nombre_grado }}</td>
+                                </tr>
+                                <tr>
                                     <th>Sección</th>
                                     <td>{{ $matricula->seccion->nombre_seccion }}</td>
                                 </tr>
@@ -51,30 +59,11 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-flex justify-content-between mt-3">
-                        <a href="{{ route('matriculas.index') }}" class="btn btn-secondary">Volver</a>
-                        <div>
-                            <a href="{{ route('matriculas.edit', $matricula->id_matricula) }}" 
-                               class="btn btn-warning">Editar</a>
-                            <form action="{{ route('matriculas.destroy', $matricula->id_matricula) }}" 
-                                  method="POST" 
-                                  class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" 
-                                        class="btn btn-danger" 
-                                        onclick="return confirm('¿Está seguro de eliminar esta matrícula?')">
-                                    Eliminar
-                                </button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0">Cursos Matriculados</h4>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCourseModal">Agregar Curso</button>
+                    <h4 class="mb-0 ">Cursos Matriculados</h4>
                 </div>
                 <div class="card-body">
                     @if($matricula->cursos->count() > 0)
@@ -88,35 +77,11 @@
                     @endif
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="addCourseModal" tabindex="-1" aria-labelledby="addCourseModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addCourseModalLabel">Agregar Curso</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('matriculas.cursos.store', $matricula->id_matricula) }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="id_curso" class="form-label">Curso</label>
-                        <select name="id_curso" id="id_curso" class="form-select" required>
-                            <option value="">Seleccione un curso</option>
-                            @foreach($cursos as $curso)
-                                <option value="{{ $curso->id_curso }}">{{ $curso->nombre_curso }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Agregar Curso</button>
-                    </div>
-                </form>
+            <div class="d-flex justify-content-center mt-3">
+                <a href="{{ route('matriculas.index') }}" class="btn btn-secondary">Volver</a>
             </div>
         </div>
     </div>
 </div>
 @endsection
+

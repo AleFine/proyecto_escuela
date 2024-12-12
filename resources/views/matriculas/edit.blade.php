@@ -29,7 +29,7 @@
                             <select name="id_alumno" id="id_alumno" class="form-select" required>
                                 <option value="">Seleccione un alumno</option>
                                 @foreach($alumnos as $alumno)
-                                    <option value="{{ $alumno->id_alumno }}" 
+                                    <option value="{{ $alumno->id_alumno }}"
                                         {{ old('id_alumno', $matricula->id_alumno) == $alumno->id_alumno ? 'selected' : '' }}>
                                         {{ $alumno->nombre }} {{ $alumno->apellido }}
                                     </option>
@@ -42,7 +42,7 @@
                             <select name="id_periodo" id="id_periodo" class="form-select" required>
                                 <option value="">Seleccione un período</option>
                                 @foreach($periodos as $periodo)
-                                    <option value="{{ $periodo->id_periodo }}" 
+                                    <option value="{{ $periodo->id_periodo }}"
                                         {{ old('id_periodo', $matricula->id_periodo) == $periodo->id_periodo ? 'selected' : '' }}>
                                         {{ $periodo->nombre_periodo }}
                                     </option>
@@ -51,15 +51,28 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="id_seccion" class="form-label">Sección</label>
-                            <select name="id_seccion" id="id_seccion" class="form-select" required>
-                                <option value="">Seleccione una sección</option>
-                                @foreach($secciones as $seccion)
-                                    <option value="{{ $seccion->id_seccion }}" 
-                                        {{ old('id_seccion', $matricula->id_seccion) == $seccion->id_seccion ? 'selected' : '' }}>
-                                        {{ $seccion->nombre_seccion }}
+                            <label for="nivel" class="form-label">Nivel</label>
+                            <select name="nivel" id="nivel" class="form-select" required>
+                                <option value="">Seleccione Nivel</option>
+                                @foreach($niveles as $nivel)
+                                    <option value="{{ $nivel->id_nivel }}" >
+                                        {{ $nivel->nombre_nivel }}
                                     </option>
                                 @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="grado">Grado</label>
+                            <select name="grado" class="form-control" id="grado" required>
+                                <option value="">Selecciona Grado</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_seccion">Seccion</label>
+                            <select name="id_seccion" class="form-control" id="id_seccion" required>
+                                <option value="">Selecciona Sección</option>
                             </select>
                         </div>
 
@@ -85,4 +98,60 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection
+
+@section('script')
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const nivelSeleccionado = document.getElementById('nivel');
+            const gradoSeleccionado = document.getElementById('grado');
+            const seccionSeleccionada = document.getElementById('id_seccion');
+
+            nivelSeleccionado.addEventListener('change', function (){
+                const nivelId = this.value;
+
+                if (nivelId) {
+                    fetch(`/matricula/get_grados/${nivelId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            gradoSeleccionado.innerHTML = '<option value="">Selecciona Grado</option>';
+                            data.forEach(grado => {
+                                const option = document.createElement('option');
+                                option.value = grado.id_grado;
+                                option.textContent = grado.nombre_grado;
+                                gradoSeleccionado.appendChild(option);
+                            });
+                        })
+                        .catch(error => console.error('Error:', error));
+                } else {
+                    gradoSeleccionado.innerHTML = '<option value="">Selecciona Grado</option>';
+                }
+            });
+
+
+            gradoSeleccionado.addEventListener('change', function () {
+                const gradoId = this.value;
+                if(gradoId){
+                    fetch(`/matricula/get_secciones/${gradoId}`)
+                       .then(response => response.json())
+                       .then(data => {
+                            seccionSeleccionada.innerHTML = '<option value="">Selecciona Sección</option>';
+                            data.forEach(seccion => {
+                                const option = document.createElement('option');
+                                option.value = seccion.id_seccion;
+                                option.textContent = seccion.nombre_seccion;
+                                seccionSeleccionada.appendChild(option);
+                            });
+                        }).catch(error => console.error('Error:', error));
+                }
+                else{
+                    seccionSeleccionada.innerHTML = '<option value="">Selecciona Sección</option>';
+                }
+            });
+
+        });
+
+
+    </script>
+@endsection

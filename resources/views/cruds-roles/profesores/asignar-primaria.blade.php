@@ -47,6 +47,18 @@
                             </select>
                         </div>
 
+                        <div class="mb-3">
+                            <label for="periodo" class="form-label">Periodo</label>
+                            <select name="periodo" id="periodo" class="form-select" required>
+                                <option value="">Seleccione Periodo</option>
+                                @foreach($periodos as $periodo)
+                                    <option value="{{ $periodo->id_periodo }}" >
+                                        {{ $periodo->nombre_periodo }}</option>
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group my-3 d-flex gap-3 justify-content-center">
                             <button
                                 type="submit"

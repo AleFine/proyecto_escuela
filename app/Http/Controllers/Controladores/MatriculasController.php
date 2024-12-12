@@ -8,9 +8,12 @@ use App\Models\Matricula;
 use App\Models\Alumno;
 use App\Models\Periodo;
 use App\Models\Seccion;
+use App\Models\Grado;
+use App\Models\Nivel;
 use App\Models\MatriculaCurso;
 use Illuminate\Support\Facades\Log;
 use App\Models\Curso;
+use Illuminate\Support\Facades\DB;
 
 class MatriculasController extends Controller
 {
@@ -37,9 +40,8 @@ class MatriculasController extends Controller
         try {
             $alumnos = Alumno::all();
             $periodos = Periodo::get();
-            $secciones = Seccion::all();
-            
-            return view('matriculas.create', compact('alumnos', 'periodos', 'secciones'));
+            $niveles = Nivel::all();
+            return view('matriculas.create', compact('alumnos', 'periodos', 'niveles'));
         } catch (\Exception $e) {
             Log::error('Error en create de matrículas:', [
                 'error' => $e->getMessage()
@@ -50,49 +52,61 @@ class MatriculasController extends Controller
     }
 
     public function store(Request $request)
-    {
-        try {
-            $data = $request->validate([
-                'id_alumno' => 'required|exists:alumnos,id_alumno',
-                'id_periodo' => 'required|exists:periodos,id_periodo',
-                'id_seccion' => 'required|exists:secciones,id_seccion',
-                'estado' => 'required|in:activo,inactivo'
-            ], [
-                'id_alumno.required' => 'El alumno es requerido',
-                'id_alumno.exists' => 'El alumno seleccionado no existe',
-                'id_periodo.required' => 'El período es requerido',
-                'id_periodo.exists' => 'El período seleccionado no existe',
-                'id_seccion.required' => 'La sección es requerida',
-                'id_seccion.exists' => 'La sección seleccionada no existe',
-                'estado.required' => 'El estado es requerido',
-                'estado.in' => 'El estado debe ser activo o inactivo'
-            ]);
+{
 
-            // Verificar si ya existe una matrícula para el alumno en el periodo
-            $matriculaExistente = Matricula::where('id_alumno', $data['id_alumno'])
-                ->where('id_periodo', $data['id_periodo'])
-                ->first();
+    $data = $request->validate([
+        'id_alumno' => 'required|exists:alumnos,id_alumno',
+        'id_periodo' => 'required|exists:periodos,id_periodo',
+        'id_seccion' => 'required|exists:secciones,id_seccion',
+        'estado' => 'required|in:activo,inactivo'
+    ]);
 
-            if ($matriculaExistente) {
-                return redirect()->back()
-                    ->withErrors(['error' => 'El alumno ya está matriculado en este período'])
-                    ->withInput();
-            }
+    $matriculaExistente = Matricula::where('id_alumno', $data['id_alumno'])
+        ->where('id_periodo', $data['id_periodo'])
+        ->where('id_seccion', $data['id_seccion'])
+        ->first();
 
-            Matricula::create($data);
-            return redirect()->route('matriculas.index')
-                ->with('success', 'Matrícula creada exitosamente');
-
-        } catch (\Exception $e) {
-            Log::error('Error al crear matrícula:', [
-                'error' => $e->getMessage(),
-                'data' => $request->all()
-            ]);
-            return redirect()->back()
-                ->withErrors(['error' => 'Error al crear la matrícula'])
-                ->withInput();
-        }
+    if ($matriculaExistente) {
+        return redirect()->back()
+            ->withErrors(['error' => 'El alumno ya está matriculado en este período en la misma sección'])
+            ->withInput();
     }
+
+    $seccion = Seccion::findOrFail($data['id_seccion']);
+
+    if ($seccion->aforo < 0) {
+        return redirect()->back()
+            ->withErrors(['error' => 'La sección ya está llena'])
+            ->withInput();
+    } else {
+        $seccion->aforo -= 1;
+        $seccion->save();
+    }
+
+    $id_matricula = DB::table('matriculas')->insertGetId([
+        'id_alumno' => $data['id_alumno'],
+        'id_seccion' => $data['id_seccion'],
+        'id_periodo' => $data['id_periodo'],
+        'estado'=> $data['estado'],
+        'created_at' => null,
+        'updated_at' => null,
+    ]);
+
+    $grado = Seccion::findOrFail($data['id_seccion'])->id_grado;
+    $cursos_matricular = Curso::where('id_grado', $grado)->get();
+
+    foreach ($cursos_matricular as $curso) {
+        DB::table('matricula_cursos')->insert([
+            'id_matricula' => $id_matricula,
+            'id_curso' => $curso->id_curso,
+            'created_at' => null,
+            'updated_at' => null,
+        ]);
+    }
+
+    return redirect()->route('matriculas.index')->with('success', 'Matrícula creada exitosamente');
+
+}
 
     public function edit($id)
     {
@@ -100,9 +114,9 @@ class MatriculasController extends Controller
             $matricula = Matricula::findOrFail($id);
             $alumnos = Alumno::all();
             $periodos = Periodo::all();
-            $secciones = Seccion::all();
-            
-            return view('matriculas.edit', compact('matricula', 'alumnos', 'periodos', 'secciones'));
+            $niveles = Nivel::all();
+
+            return view('matriculas.edit', compact('matricula', 'alumnos', 'periodos', 'niveles'));
         } catch (\Exception $e) {
             Log::error('Error al editar matrícula:', [
                 'error' => $e->getMessage(),
@@ -117,6 +131,8 @@ class MatriculasController extends Controller
     {
         try {
             $matricula = Matricula::findOrFail($id);
+            $grado_viejo = $matricula->seccion->id_grado;
+
             $data = $request->validate([
                 'id_alumno' => 'required|exists:alumnos,id_alumno',
                 'id_periodo' => 'required|exists:periodos,id_periodo',
@@ -124,6 +140,20 @@ class MatriculasController extends Controller
                 'estado' => 'required|in:activo,inactivo'
             ]);
 
+            $grado = $request->input('grado');
+
+            if($grado != $grado_viejo){
+                $cursos_matricular = Curso::where('id_grado', $grado)->get();
+                DB::table('matricula_cursos')->where('id_matricula', $id)->delete();
+                foreach ($cursos_matricular as $curso) {
+                    DB::table('matricula_cursos')->insert([
+                        'id_matricula' => $id,
+                        'id_curso' => $curso->id_curso,
+                        'created_at' => null,
+                        'updated_at' => null,
+                    ]);
+                }
+            }
             $matricula->update($data);
             return redirect()->route('matriculas.index')
                 ->with('success', 'Matrícula actualizada exitosamente');
@@ -143,7 +173,16 @@ class MatriculasController extends Controller
     {
         try {
             $matricula = Matricula::findOrFail($id);
+
+            DB::table('matricula_cursos')->where('id_matricula', $id)->delete();
+
             $matricula->delete();
+
+            $seccion = Seccion::findOrFail($matricula->id_seccion);
+
+            $seccion->aforo += 1;
+            $seccion->save();
+
             return redirect()->route('matriculas.index')
                 ->with('success', 'Matrícula eliminada exitosamente');
         } catch (\Exception $e) {
@@ -160,8 +199,7 @@ class MatriculasController extends Controller
     {
         try {
             $matricula = Matricula::with(['alumno', 'periodo', 'seccion', 'cursos'])->findOrFail($id);
-            $cursos = Curso::all();
-            return view('matriculas.show', compact('matricula', 'cursos'));
+            return view('matriculas.show', compact('matricula'));
         } catch (\Exception $e) {
             Log::error('Error al mostrar matrícula:', [
                 'error' => $e->getMessage(),
@@ -172,29 +210,13 @@ class MatriculasController extends Controller
         }
     }
 
-    public function addCurso(Request $request, $id_matricula)
-    {
-        try {
-            $request->validate([
-                'id_curso' => 'required|exists:cursos,id_curso',
-            ]);
-
-            $matriculaCurso = new MatriculaCurso();
-            $matriculaCurso->id_curso = $request->id_curso;
-            $matriculaCurso->id_matricula = $id_matricula;
-            $matriculaCurso->save();
-
-            return redirect()->route('matriculas.show', $id_matricula)
-                ->with('success', 'Curso agregado exitosamente');
-        } catch (\Exception $e) {
-            Log::error('Error al agregar curso a matrícula:', [
-                'error' => $e->getMessage(),
-                'id_matricula' => $id_matricula,
-                'data' => $request->all()
-            ]);
-            return redirect()->back()
-                ->withErrors(['error' => 'Error al agregar el curso'])
-                ->withInput();
-        }
+    public function getGrados($nivelId){
+        $grados = Grado::where('id_nivel',$nivelId)->get();
+        return response()->json($grados);
     }
-} 
+
+    public function getSecciones($gradoId){
+        $secciones = Seccion::where('id_grado',$gradoId)->get();
+        return response()->json($secciones);
+    }
+}

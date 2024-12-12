@@ -134,6 +134,7 @@ class PadreController extends Controller
 
     public function eliminar_relacion($padre, $estudiante){
         DB::table('relacion_padres_alumnos')->where('id_padre_familia', $padre)->where('id_alumno', $estudiante)->delete();
+
         return redirect()->route('padres.asignar',['padre'=>$padre])->with('success', 'Registro Eliminado Correctamente');
     }
 

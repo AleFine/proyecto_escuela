@@ -157,7 +157,7 @@ Route::post('/registrar_curso_secundaria', [ProfeController::class, 'registrar_c
 
 Route::get('/profe/get_grados/{nivelId}', [ProfeController::class, 'getGrados'])->name('profes.getGrados');
 Route::get('/profe/get_secciones/{gradoId}', [ProfeController::class, 'getSecciones'])->name('profes.getSecciones');
-Route::middleware('auth')->prefix('periodos')->group(function () {
+Route::middleware('auth')->prefix(prefix: 'periodos')->group(function () {
     Route::get('/', [PeriodoController::class, 'index'])->name('periodos.index');
     Route::get('/create', [PeriodoController::class, 'create'])->name('periodos.create');
     Route::post('/', [PeriodoController::class, 'store'])->name('periodos.store');
@@ -168,6 +168,8 @@ Route::middleware('auth')->prefix('periodos')->group(function () {
 });
 
 Route::resource('matriculas', MatriculasController::class);
-Route::post('matriculas/{id_matricula}/cursos', [MatriculasController::class, 'addCurso'])->name('matriculas.cursos.store');
+
+Route::get('/matricula/get_grados/{nivelId}', [MatriculasController::class, 'getGrados'])->name('matriculas.getGrados');
+Route::get('/matricula/get_secciones/{gradoId}', [MatriculasController::class, 'getSecciones'])->name('matriculas.getSecciones');
 
 require __DIR__.'/auth.php';
