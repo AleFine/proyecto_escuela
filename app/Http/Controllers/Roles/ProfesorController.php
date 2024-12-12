@@ -46,6 +46,8 @@ class ProfesorController extends Controller
         $curso = Curso::findOrFail($id_curso);
         $matriculas = $curso->matricula;
 
+        $user = User::findOrFail($profesor->user_id);
+
         if($request->input('seccion')){
             $id_seccion = $request->input('seccion');
             $seccion = Seccion::findOrFail($id_seccion);
@@ -54,12 +56,15 @@ class ProfesorController extends Controller
             $id_docente_asignado = $request->input('docente');
             $seccion = DocenteAsignado::findOrFail($id_docente_asignado)->seccion;
         }
-        return view('profesor.show',compact('matriculas','seccion','curso','profesor'));
+        return view('profesor.show',compact('matriculas','seccion','curso','profesor','user'));
     }
 
-    public function asignar_calificacion($curso,$estudiante){
+    public function asignar_calificacion($curso,$estudiante,$profesor,$seccion){
 
         $matricula = Matricula::where('id_alumno',$estudiante)->first();
+
+        $profesorA = Profesor::findOrFail($profesor);
+
         $estudianteA = Alumno::findOrFail($estudiante);
         $cursoA = Curso::findOrFail($curso);
 
@@ -73,7 +78,7 @@ class ProfesorController extends Controller
         $calificaciones_unidad2 = Calificacion::where('id_matricula',$matricula->id_matricula)->where('id_curso',$curso)->where('id_unidad',2)->orderBy('id_competencia', 'asc')->with('competencia')->get();
         $calificaciones_unidad3 = Calificacion::where('id_matricula',$matricula->id_matricula)->where('id_curso',$curso)->where('id_unidad',3)->orderBy('id_competencia', 'asc')->with('competencia')->get();
 
-        return view('profesor.calificaciones', compact('calificaciones_unidad1','calificaciones_unidad2','calificaciones_unidad3','matricula','estudianteA','cursoA','habilitado'  ));
+        return view('profesor.calificaciones', compact('calificaciones_unidad1','calificaciones_unidad2','calificaciones_unidad3','matricula','estudianteA','cursoA','profesorA','seccion','habilitado' ));
     }
 
     public function calificar_curso(Request $request){

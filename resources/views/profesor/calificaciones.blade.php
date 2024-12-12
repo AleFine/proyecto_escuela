@@ -5,11 +5,6 @@
 <div class="container">
     <p class="text-center fs-2 p-2 my-2">Calificaciones del Estudiante</p>
 
-    <div class="d-flex justify-content-between mb-3">
-        <a href="{{ url()->previous() }}" class="btn btn-secondary">
-            <i class="fas fa-arrow-left"></i> Volver
-        </a>
-    </div>
 
     <div class="card mb-4">
         <div class="card-body">
@@ -119,11 +114,13 @@
             </p>
         @endif
 
-        <div class="text-end">
+        <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-success" @if(!$habilitado) disabled @endif>
                 <i class="fas fa-save"></i> Guardar Calificaciones
             </button>
+            <a href="{{ route('profesor.show', ['curso' => $cursoA->id_curso,'profesor'=>$profesorA->id_profesor,'seccion'=>$seccion]) }}" class="btn btn-secondary">Cancelar</a>
         </div>
+
     </form>
 </div>
 

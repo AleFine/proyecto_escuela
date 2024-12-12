@@ -18,6 +18,7 @@ use App\Http\Controllers\Controladores\SeccionController;
 use App\Http\Controllers\Controladores\GradoController;
 use App\Http\Controllers\Controladores\AreaAcademicaController;
 use App\Http\Controllers\Controladores\PeriodoController;
+use App\Http\Controllers\Controladores\ReportePorAlumnoController;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Log;
@@ -182,8 +183,17 @@ Route::resource('matriculas', MatriculasController::class);
 Route::get('/matricula/get_grados/{nivelId}', [MatriculasController::class, 'getGrados'])->name('matriculas.getGrados');
 Route::get('/matricula/get_secciones/{gradoId}', [MatriculasController::class, 'getSecciones'])->name('matriculas.getSecciones');
 
-Route::get('/profesor/calificacion/{curso}/{estudiante}', [ProfesorController::class, 'asignar_calificacion'])->name('profesor.asignar_calificacion');
+Route::get('/profesor/calificacion/{curso}/{estudiante}/{profesor}/{seccion}', [ProfesorController::class, 'asignar_calificacion'])->name('profesor.asignar_calificacion');
 Route::post('/profesor_assing/calificar', [ProfesorController::class, 'calificar_curso'])->name('profesor.calificar_curso');
+
+
+Route::get('/reporte/index_admin', [ReportePorAlumnoController::class, 'index'])->name('reporte.index_admin');
+Route::post('/reporte_nota/alumno', [ReportePorAlumnoController::class, 'show'])->name('reporte.reporte_notas');
+
+Route::get('/reporte/get_grados/{nivelId}', [ReportePorAlumnoController::class, 'getGrados'])->name('matriculas.getGrados');
+Route::get('/reporte/get_secciones/{gradoId}', [ReportePorAlumnoController::class, 'getSecciones'])->name('matriculas.getSecciones');
+Route::get('/reporte/get_alumnos/{seccionId}', [ReportePorAlumnoController::class, 'getAlumnos'])->name('matriculas.getAlumnos');
+Route::get('/reporte/get_cursos/{alumnoId}', [ReportePorAlumnoController::class, 'getCursos'])->name('matriculas.getCursos');
 
 Route::get('alumno/{id_alumno}/reporte-notas', [ReporteController::class, 'generarReporteNotas'])
     ->name('reporte.notas');    

@@ -25,6 +25,7 @@
 
     <div class="card-body text-center">
         @if($matriculas->count() > 0 )
+        @if($matriculas->count() > 0 )
             <table class="table table-striped text-center">
                 <thead class="text-center">
                     <tr>
@@ -37,6 +38,7 @@
                 </thead>
                 <tbody>
                     @foreach($matriculas as $matricula)
+                        @if($matricula->id_seccion == $seccion->id_seccion)
                         @if($matricula->id_seccion == $seccion->id_seccion)
                         <tr class="text-center">
                             <td>{{ $matricula->alumno->id_alumno }}</td>
@@ -57,6 +59,9 @@
                                 <a title="Generar PDF" href="{{ route('reporte.notas',['id_alumno'=>$matricula->alumno->id_alumno]) }}" target="_blank">
                                     <button type="button" class="btn btn-sm btn-primary">
                                         <i class="fas fa-file-pdf"></i> PDF
+                                <a title="Asignar Notas" href="{{ route('profesor.asignar_calificacion',['curso'=>$curso->id_curso,'estudiante'=>$matricula->alumno->id_alumno,'profesor'=>$profesor->id_profesor,'seccion'=>$seccion->id_seccion]) }}">
+                                    <button type="submit" class="btn btn-sm btn-info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 22q-.825 0-1.412-.587T4 20V4q0-.825.588-1.412T6 2h8l6 6v12q0 .825-.587 1.413T18 22zm7-13V4H6v16h12V9zM6 4v5zv16z"/></svg>
                                     </button>
                                 </a>
                             </td>
@@ -65,6 +70,11 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="mt-5">
+                <a class="btn-info btn" title="Volver" href="{{ route('profesor.dashboard',['gmail'=>$user->email]) }}">
+                    Exit
+                </a>
+            </div>
         @else
             <p class="text-center">No hay estudiantes registrados en el curso</p>
         @endif
