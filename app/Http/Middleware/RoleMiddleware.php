@@ -23,7 +23,7 @@ class RoleMiddleware
         $roles = is_array($roles) ? $roles : explode('|', $roles);
 
         if (!in_array(Auth::user()->rol, $roles)) {
-            abort(403, 'No tienes permiso para acceder a esta sección.');
+            return redirect()->back()->withErrors(['error' => 'No tienes permiso para acceder a esta sección.']);
         }
 
         return $next($request);

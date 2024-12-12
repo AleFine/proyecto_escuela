@@ -66,12 +66,20 @@
                 <ul class="menu-inner py-1">
                     <!-- Dashboards -->
                     <li class="menu-item ">
+                        @if (Auth::user()->rol === 'admin')
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Dashboards">Dashboards</div>
-
                         </a>
-
+                        @elseif(Auth::user()->rol === 'profesor')
+                        <div style="margin-left: 40px">
+                            <img src="/assets/img/logos/profe2.png" alt="" width="200">
+                        </div>
+                        @elseif(Auth::user()->rol === 'padre_familia')
+                        <div style="margin-left: 40px">
+                            <img src="/assets/img/logos/padres.png" alt="" width="200">
+                        </div>
+                        @endif
                         <ul class="menu-sub">
                             <li class="menu-item active">
                                 <a href="{{ route('alumnos.index') }}" class="menu-link">
@@ -139,10 +147,17 @@
                     </li>
                     <!-- Layouts -->
                     <li class="menu-item">
+                        @if (Auth::user()->rol === 'admin')
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-layout"></i>
                             <div data-i18n="Layouts">Operaciones</div>
                         </a>
+                        @else
+                        <a href="javascript:void(0);" class="menu-link menu-toggle" hidden>
+                            <i class="menu-icon tf-icons bx bx-layout"></i>
+                            <div data-i18n="Layouts">Operaciones</div>
+                        </a>
+                        @endif
                         <ul class="menu-sub">
                             <li class="menu-item">
                                 <a href="{{ route('matriculas.index') }}" class="menu-link">
@@ -158,12 +173,19 @@
                             </li>
                         </ul>
                     </li>
-
+                   
                     <li class="menu-item">
+                        @if (Auth::user()->rol === 'admin')
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
                             <div data-i18n="Layouts">Cursos</div>
                         </a>
+                        @else
+                        <a href="javascript:void(0);" class="menu-link menu-toggle" hidden>
+                            <i class="menu-icon tf-icons bx bx-collection"></i>
+                            <div data-i18n="Layouts">Cursos</div>
+                        </a>
+                        @endif
                         <ul class="menu-sub">
                             <li class="menu-item">
                                 <a href="{{ route('cursos.index', ['nivel'=>1]) }}" class="menu-link">

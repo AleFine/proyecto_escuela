@@ -11,8 +11,16 @@
         <h4 class="text-center text-primary font-weight-bold">
             Cursos del Estudiante: {{ $estudiante->nombre }} {{ $estudiante->apellido }}
         </h4>
+        <div class="d-flex justify-content-end">
+            <a title="Generar PDF" href="{{ route('reporte.notas',['id_alumno'=>$estudiante->id_alumno]) }}" target="_blank">
+                <button type="button" class="btn btn-sm btn-primary">
+                    <i class="fas fa-file-pdf"></i>Generar Reporte General
+                </button>
+            </a>
+        </div>
     </div>
-
+    
+    
     @if(count($cursos) == 0)
         <div class="alert alert-warning text-center" role="alert">
             El estudiante no tiene cursos registrados
@@ -31,7 +39,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title text-primary font-weight-bold">{{ $curso->id_curso }}</h5>
                             <p class="card-text text-muted">{{ $curso->nombre_curso }}</p>
-                            <a href="#" class="btn btn-primary btn-block">Ver Notas</a>
+                            <a href="{{ route('padre_familia.ver_notas', ['id_curso' => $curso->id_curso, 'id_alumno' => $estudiante->id_alumno]) }}" class="btn btn-primary btn-block">Ver Notas</a>
                         </div>
                     </div>
                 </div>

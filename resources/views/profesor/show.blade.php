@@ -46,7 +46,6 @@
                                 <img src="{{ $matricula->alumno->imagen_rostro }}" style="object-fit: cover; width: 30px; height: 30px;" alt="">
                             </td>
                             <td class="d-flex justify-content-center align-items-center gap-2">
-                                <!-- Botón Asignar Notas -->
                                 <a title="Asignar Notas" href="{{ route('profesor.asignar_calificacion',['curso'=>$curso->id_curso,'estudiante'=>$matricula->alumno->id_alumno]) }}">
                                     <button type="button" class="btn btn-sm btn-info">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -55,7 +54,6 @@
                                     </button>
                                 </a>
 
-                                <!-- Botón Generar PDF -->
                                 <a title="Generar PDF" href="{{ route('reporte.notas',['id_alumno'=>$matricula->alumno->id_alumno]) }}" target="_blank">
                                     <button type="button" class="btn btn-sm btn-primary">
                                         <i class="fas fa-file-pdf"></i> PDF

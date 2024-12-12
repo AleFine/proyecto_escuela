@@ -188,4 +188,38 @@ Route::post('/profesor_assing/calificar', [ProfesorController::class, 'calificar
 Route::get('alumno/{id_alumno}/reporte-notas', [ReporteController::class, 'generarReporteNotas'])
     ->name('reporte.notas');    
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/padre_familia/notas/{id_curso}/{id_alumno}', [PadreFamiliaController::class, 'verNotas'])
+->name('padre_familia.ver_notas');
+
 require __DIR__.'/auth.php';
