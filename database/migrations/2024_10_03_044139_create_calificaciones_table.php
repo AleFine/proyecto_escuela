@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('competencias', function (Blueprint $table) {
-            $table->id('id_competencia');
-            $table->string('nombre_competencia', 100);
-            $table->text('descripcion')->nullable();
+        Schema::create('calificaciones', function (Blueprint $table) {
+            $table->id('id_calificacion');
+            $table->enum('calificacion', ['AD','A', 'B', 'C', 'D']);
             $table->foreignId('id_unidad')->references('id_unidad')->on('unidades')->onDelete('cascade');
             $table->foreignId('id_curso')->references('id_curso')->on('cursos')->onDelete('cascade');
+            $table->foreignId('id_competencia')->references('id_competencia')->on('competencias')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('competencias');
+        Schema::dropIfExists('calificaciones');
     }
 };

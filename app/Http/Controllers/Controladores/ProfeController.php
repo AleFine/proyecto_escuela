@@ -145,6 +145,7 @@ class ProfeController extends Controller
         $profesor = Profesor::findOrFail($profesor);
         $docente_asignado = DocenteAsignado::where('id_profesor', $profesor->id_profesor)->first();
         $disabled = $docente_asignado ? true : false;
+        $periodos = Periodo::all();
         return view('cruds-roles.profesores.asignar-primaria', compact('profesor', 'disabled','periodos'));
     }
 

@@ -10,7 +10,6 @@ use App\Models\Periodo;
 use App\Models\Seccion;
 use App\Models\Grado;
 use App\Models\Nivel;
-use App\Models\MatriculaCurso;
 use Illuminate\Support\Facades\Log;
 use App\Models\Curso;
 use Illuminate\Support\Facades\DB;
