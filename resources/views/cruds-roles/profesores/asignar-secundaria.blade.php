@@ -79,32 +79,57 @@
                 </div>
                 <div class="card-body">
                     @if($profesor->docente_asignado->count() > 0)
-                        <table class="table table-striped text-center">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Nivel</th>
-                                    <th>Grado</th>
-                                    <th>Sección</th>
-                                    <th>Asignar Curso</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($profesor->docente_asignado as $docente)
-                                    <tr class="text-center">
-                                        <td>{{ $docente->seccion->grado->nivel->nombre_nivel }}</td>
-                                        <td>{{ $docente->seccion->grado->nombre_grado }}</td>
-                                        <td>{{ $docente->seccion->nombre_seccion }}</td>
-                                        <td>
-                                            <form title="Asignar Curso" action="{{ route('profes.asignar_curso_secundaria', ['profesor'=>$profesor->id_profesor,'seccion'=>$docente->id_seccion]) }}" method="GET">
-                                                <button type="submit" class="btn btn-sm btn-info">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h4.2q.325-.9 1.088-1.45T12 1t1.713.55T14.8 3H19q.825 0 1.413.588T21 5v6.7q-.475-.225-.975-.387T19 11.075V5H5v14h6.05q.075.55.238 1.05t.387.95zm0-3v1V5v6.075V11zm2-1h4.075q.075-.525.238-1.025t.362-.975H7zm0-4h6.1q.8-.75 1.788-1.25T17 11.075V11H7zm0-4h10V7H7zm5-4.75q.325 0 .538-.213t.212-.537t-.213-.537T12 2.75t-.537.213t-.213.537t.213.538t.537.212M18 23q-2.075 0-3.537-1.463T13 18t1.463-3.537T18 13t3.538 1.463T23 18t-1.463 3.538T18 23m-.5-2h1v-2.5H21v-1h-2.5V15h-1v2.5H15v1h2.5z"/></svg>
-                                                </button>
-                                            </form>
-                                        </td>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover text-center">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Nivel</th>
+                                        <th>Grado</th>
+                                        <th>Sección</th>
+                                        <th>Asignar Curso</th>
+                                        <th>Eliminar seccion</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach($profesor->docente_asignado as $docente)
+                                        <tr class="text-center">
+                                            <td>{{ $docente->seccion->grado->nivel->nombre_nivel }}</td>
+                                            <td>{{ $docente->seccion->grado->nombre_grado }}</td>
+                                            <td>{{ $docente->seccion->nombre_seccion }}</td>
+                                            <td>
+                                                <form title="Asignar Curso" 
+                                                      action="{{ route('profes.asignar_curso_secundaria', ['profesor'=>$profesor->id_profesor,'seccion'=>$docente->id_seccion]) }}" 
+                                                      method="GET"
+                                                      id="form-asignar-curso-{{ $docente->id_seccion }}">
+                                                    <button type="submit" 
+                                                            class="btn btn-sm btn-info" 
+                                                            onclick="confirmarAccion(event, this.closest('form'), false)">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
+                                                            <path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h4.2q.325-.9 1.088-1.45T12 1t1.713.55T14.8 3H19q.825 0 1.413.588T21 5v6.7q-.475-.225-.975-.387T19 11.075V5H5v14h6.05q.075.55.238 1.05t.387.95zm0-3v1V5v6.075V11zm2-1h4.075q.075-.525.238-1.025t.362-.975H7zm0-4h6.1q.8-.75 1.788-1.25T17 11.075V11H7zm0-4h10V7H7zm5-4.75q.325 0 .538-.213t.212-.537t-.213-.537T12 2.75t-.537.213t-.213.537t.213.538t.537.212M18 23q-2.075 0-3.537-1.463T13 18t1.463-3.537T18 13t3.538 1.463T23 18t-1.463 3.538T18 23m-.5-2h1v-2.5H21v-1h-2.5V15h-1v2.5H15v1h2.5z"/>
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('profes.eliminar_asignacion_secundaria', ['profesor' => $profesor->id_profesor, 'seccion' => $docente->id_seccion]) }}" 
+                                                      method="POST"
+                                                      id="form-eliminar-asignacion-{{ $docente->id_seccion }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" 
+                                                            class="btn btn-danger" 
+                                                            onclick="confirmarAccion(event, this.closest('form'), true)">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     @else
                         <p class="text-center mt-3">No tiene secciones registradas</p>
                     @endif
@@ -118,6 +143,31 @@
 
 @section('script')
     <script>
+        function confirmarAccion(event, formOrUrl, isDelete) {
+            event.preventDefault();
+            const title = isDelete ? '¿Estás seguro en eliminar este registro?' : '¿Estás seguro de ver esta matrícula?';
+            const text = isDelete ? '¡No podrás revertir esto!' : 'Serás redirigido a los detalles.';
+            const confirmButtonText = isDelete ? 'Sí, eliminar' : 'Sí, ver';
+
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: isDelete ? '#d33' : '#3085d6',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: confirmButtonText,
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (isDelete) {
+                        formOrUrl.submit();
+                    } else {
+                        window.location.href = formOrUrl;
+                    }
+                }
+            });
+        }
 
         document.addEventListener('DOMContentLoaded', function () {
             const nivelSeleccionado = document.getElementById('nivel');

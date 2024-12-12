@@ -154,6 +154,14 @@ Route::get('/asignar_curso_secundaria/{profesor}/{seccion}', [ProfeController::c
 
 Route::post('/registrar_curso_secundaria', [ProfeController::class, 'registrar_curso_secundaria'])->name('profes.registrar_curso_secundaria');
 
+//ELIMINAR SECCION ASIGNADA A UN PROFESOR DE PRIMARIA
+Route::delete('/profes/eliminar-asignacion-primaria/{profesor}/{seccion}', [ProfeController::class, 'eliminar_asignacion_primaria'])
+    ->name('profes.eliminar_asignacion_primaria');
+
+//ELIMINAR SECCION ASIGNADA A UN PROFESOR DE SECUNDARIA
+Route::delete('/profes/{profesor}/eliminar-asignacion-secundaria/{seccion}', [ProfeController::class, 'eliminar_asignacion_secundaria'])
+    ->name('profes.eliminar_asignacion_secundaria');
+
 
 Route::get('/profe/get_grados/{nivelId}', [ProfeController::class, 'getGrados'])->name('profes.getGrados');
 Route::get('/profe/get_secciones/{gradoId}', [ProfeController::class, 'getSecciones'])->name('profes.getSecciones');

@@ -177,7 +177,7 @@ class ProfeController extends Controller
                 'updated_at' => null,
             ]);
         }
-
+ 
         return redirect()->route('profes.asignar_primaria',['profesor'=>$id_profesor])->with('success', 'Docente asignado correctamente');
     }
 
@@ -250,5 +250,59 @@ class ProfeController extends Controller
         ->get();
 
     return response()->json($secciones);
+    }
+
+    public function eliminar_asignacion_primaria($profesor, $seccion){
+        // Buscar el registro de docente asignado
+        $docente_asignado = DocenteAsignado::where('id_profesor', $profesor)
+            ->where('id_seccion', $seccion)
+            ->first();
+
+        if ($docente_asignado) {
+            // Primero eliminar los registros de profesor_cursos asociados
+            DB::table('profesor_cursos')
+                ->where('id_docente_asignado', $docente_asignado->id_docente_asignado)
+                ->delete();
+
+            // Luego eliminar el registro de docente_asignado
+            $docente_asignado->delete();
+
+            return redirect()->route('profes.asignar_primaria', ['profesor' => $profesor])
+                ->with('success', 'Asignación de docente eliminada correctamente');
+        }
+
+        return redirect()->route('profes.asignar_primaria', ['profesor' => $profesor])
+            ->with('error', 'No se encontró la asignación del docente');
+    }
+
+    public function eliminar_asignacion_secundaria($profesor, $seccion){
+        // Find the docente_asignado record
+        $docente_asignado = DocenteAsignado::where('id_profesor', $profesor)
+            ->where('id_seccion', $seccion)
+            ->first();
+
+        if ($docente_asignado) {
+            // Check if there are any associated courses
+            $profesor_cursos = DB::table('profesor_cursos')
+                ->where('id_docente_asignado', $docente_asignado->id_docente_asignado)
+                ->get();
+
+            // If there are courses, delete them first
+            if ($profesor_cursos->count() > 0) {
+                DB::table('profesor_cursos')
+                    ->where('id_docente_asignado', $docente_asignado->id_docente_asignado)
+                    ->delete();
+            }
+
+            // Delete the docente_asignado record
+            $docente_asignado->delete();
+
+            return redirect()->route('profes.asignar_secundaria', ['profesor' => $profesor])
+                ->with('success', 'Asignación de docente eliminada correctamente');
+        }
+
+        // If no record found, return with an error message
+        return redirect()->route('profes.asignar_secundaria', ['profesor' => $profesor])
+            ->with('error', 'No se encontró la asignación del docente');
     }
 }
