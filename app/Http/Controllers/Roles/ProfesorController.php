@@ -46,6 +46,7 @@ class ProfesorController extends Controller
         $curso = Curso::findOrFail($id_curso);
         $matriculas = $curso->matricula;
 
+
         if($request->input('seccion')){
             $id_seccion = $request->input('seccion');
             $seccion = Seccion::findOrFail($id_seccion);

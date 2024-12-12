@@ -152,8 +152,8 @@
                         </ul>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div data-i18n="Without Menu">Filtar cursos y alumnos</div>
+                                <a href="{{ route('reporte.index_admin') }}" class="menu-link">
+                                    <div data-i18n="Without Menu">Generar Reporte Por Alumno</div>
                                 </a>
                             </li>
                         </ul>

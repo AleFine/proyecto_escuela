@@ -24,7 +24,7 @@
     </div>
 
     <div class="card-body text-center">
-        @if($matriculas->count() > 0)
+        @if($matriculas->count() > 0 )
             <table class="table table-striped text-center">
                 <thead class="text-center">
                     <tr>
@@ -37,6 +37,7 @@
                 </thead>
                 <tbody>
                     @foreach($matriculas as $matricula)
+                        @if($matricula->id_seccion == $seccion->id_seccion)
                         <tr class="text-center">
                             <td>{{ $matricula->alumno->id_alumno }}</td>
                             <td>{{ $matricula->alumno->nombre }} {{ $matricula->alumno->apellido }}</td>
@@ -50,6 +51,7 @@
                                 </a>
                             </td>
                         </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
