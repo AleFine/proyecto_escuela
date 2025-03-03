@@ -2,7 +2,7 @@
 
 
 use App\Http\Controllers\Controladores\PadreController;
-use App\Http\Controllers\Controladores\ProfeController; //son para ,os crud
+use App\Http\Controllers\Controladores\ProfeController; //son para los crud
 
 
 use App\Http\Controllers\Controladores\CursoController;
@@ -131,7 +131,7 @@ Route::get('/cursos_edit/{curso}', [CursoController::class, 'edit'])->name('curs
 
 Route::get('/profesor_alumnos/', [ProfesorController::class, 'show'])->name('profesor.show');
 
-//PARA LAS VOSTAS Y CREACION DE LOS CRUDS PADRE Y PROFEE JEJEJE:
+//PARA LAS VISTAS Y CREACION DE LOS CRUDS PADRE Y PROFE:
 
 Route::resource('padres', PadreController::class);
 Route::get('/padre_create', [PadreController::class, 'create'])->name('padres.create');

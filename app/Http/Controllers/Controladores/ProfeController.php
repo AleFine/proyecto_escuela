@@ -45,7 +45,7 @@ class ProfeController extends Controller
             'apellido'=>'Ingrese apellido, máximo 100 caracteres',
             'dni'=>'Ingrese dni, necesario 8 caracteres',
             'telefono'=>'Ingrese el teléfono, necesario 9 caracteres',
-            'direccion'=>'Ingrese la dirección',
+            'direccion'=>'  Ingrese la dirección',
             'area_academica' =>'Elegir una area académica',
             'fecha_ingreso'=>'Eliga la fecha',
             'fecha_nacimiento'=>'Eliga la fecha',

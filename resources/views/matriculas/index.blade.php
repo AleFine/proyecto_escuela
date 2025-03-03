@@ -58,9 +58,8 @@
                                         <td class="d-flex justify-content-center align-items-center gap-2">
                                             <a title="Visualizar Cursos" href="{{ route('matriculas.show', $matricula->id_matricula) }}"
                                             class="btn btn-info btn-sm">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
-                                                    <path fill="currentColor" d="M12 4.5C8.5 4.5 5.5 7 3.5 10c-2 3 0 6.5 3.5 6.5s6-2.5 8-5.5c2-3-1.5-6.5-5-6.5zm0 9c-1.5 0-3-1-3-3s1.5-3 3-3 3 1 3 3-1.5 3-3 3z"/>
-                                                </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M3 13c3.6-8 14.4-8 18 0"/><path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6"/></g>
+                                            </svg>
                                             </a>
                                             <a title="Editar"
                                                href="{{ route('matriculas.edit', $matricula->id_matricula) }}">

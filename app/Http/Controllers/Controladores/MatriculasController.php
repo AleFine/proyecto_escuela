@@ -209,7 +209,6 @@ class MatriculasController extends Controller
 
             DB::table('matricula_cursos')->where('id_matricula', $id)->delete();
             DB::table('calificaciones')->where('id_matricula', $id)->delete();
-            DB::table('matricula_cursos')->where('id_matricula', $id)->delete();
 
             $matricula->delete();
 
