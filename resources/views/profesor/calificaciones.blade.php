@@ -28,6 +28,10 @@
         <input type="hidden" name="estudiante" value="{{ $estudianteA ->id_alumno }}">
         <input type="hidden" name="curso" value="{{ $cursoA->id_curso }}">
 
+        <input type="hidden" name="profesor" value="{{ $profesorA->id_profesor }}">
+        
+        <input type="hidden" name="seccion" value="{{ $seccion }}">
+
         <h4 class="mb-3">Asignar Calificaciones</h4>
 
         <div class="table-responsive mb-4">

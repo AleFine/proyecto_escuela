@@ -141,78 +141,79 @@
 
 @section('script')
     <script>
-        function confirmarAccion(event, formOrUrl, isDelete) {
-            event.preventDefault();
-            const title = isDelete ? '¿Estás seguro en eliminar este registro?' : '¿Estás seguro de ver esta matrícula?';
-            const text = isDelete ? '¡No podrás revertir esto!' : 'Serás redirigido a los detalles.';
-            const confirmButtonText = isDelete ? 'Sí, eliminar' : 'Sí, ver';
-
-            Swal.fire({
-                title: title,
-                text: text,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: isDelete ? '#d33' : '#3085d6',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: confirmButtonText,
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    if (isDelete) {
-                        formOrUrl.submit();
-                    } else {
-                        window.location.href = formOrUrl;
-                    }
-                }
-            });
-        }
-
         document.addEventListener('DOMContentLoaded', function () {
-            const nivelSeleccionado = document.getElementById('nivel');
-            const gradoSeleccionado = document.getElementById('grado');
-            const seccionSeleccionada = document.getElementById('seccion');
+    const nivelSeleccionado = document.getElementById('nivel');
+    const gradoSeleccionado = document.getElementById('grado');
+    const seccionSeleccionada = document.getElementById('seccion');
 
-            const nivelId = parseInt(nivelSeleccionado.value);
+    // Cargar grados cuando se selecciona un nivel
+    nivelSeleccionado.addEventListener('change', function () {
+        const nivelId = this.value;
 
-            if (nivelId) {
-                fetch(/profe/get_grados/${nivelId})
-                    .then(response => response.json())
-                    .then(data => {
-                        gradoSeleccionado.innerHTML = '<option value="">Selecciona Grado</option>';
-                        data.forEach(grado => {
-                            const option = document.createElement('option');
-                            option.value = grado.id_grado;
-                            option.textContent = grado.nombre_grado;
-                            gradoSeleccionado.appendChild(option);
-                        });
-                    })
-                    .catch(error => console.error('Error:', error));
-            } else {
-                gradoSeleccionado.innerHTML = '<option value="">Selecciona Grado</option>';
-            }
+        if (nivelId) {
+            fetch(`/profe/get_grados/${nivelId}`)
+                .then(response => response.json())
+                .then(data => {
+                    gradoSeleccionado.innerHTML = '<option value="">Selecciona Grado</option>';
+                    data.forEach(grado => {
+                        const option = document.createElement('option');
+                        option.value = grado.id_grado;
+                        option.textContent = grado.nombre_grado;
+                        gradoSeleccionado.appendChild(option);
+                    });
 
-            gradoSeleccionado.addEventListener('change', function () {
-                const gradoId = this.value;
-                if(gradoId){
-                    fetch(/profe/get_secciones/${gradoId})
-                       .then(response => response.json())
-                       .then(data => {
-                            seccionSeleccionada.innerHTML = '<option value="">Selecciona Sección</option>';
-                            data.forEach(seccion => {
-                                const option = document.createElement('option');
-                                option.value = seccion.id_seccion;
-                                option.textContent = seccion.nombre_seccion;
-                                seccionSeleccionada.appendChild(option);
-                            });
-                        }).catch(error => console.error('Error:', error));
-                }
-                else{
+                    // Cargar secciones después de cargar los grados
+                    const gradoId = gradoSeleccionado.value;
+                    if (gradoId) {
+                        fetch(`/profe/get_secciones/${gradoId}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                seccionSeleccionada.innerHTML = '<option value="">Selecciona Sección</option>';
+                                data.forEach(seccion => {
+                                    const option = document.createElement('option');
+                                    option.value = seccion.id_seccion;
+                                    option.textContent = seccion.nombre_seccion;
+                                    seccionSeleccionada.appendChild(option);
+                                });
+                            })
+                            .catch(error => console.error('Error:', error));
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        } else {
+            gradoSeleccionado.innerHTML = '<option value="">Selecciona Grado</option>';
+            seccionSeleccionada.innerHTML = '<option value="">Selecciona Sección</option>';
+        }
+    });
+
+    // Cargar secciones cuando se selecciona un grado
+    gradoSeleccionado.addEventListener('change', function () {
+        const gradoId = this.value;
+
+        if (gradoId) {
+            fetch(`/profe/get_secciones/${gradoId}`)
+                .then(response => response.json())
+                .then(data => {
                     seccionSeleccionada.innerHTML = '<option value="">Selecciona Sección</option>';
-                }
-            });
+                    data.forEach(seccion => {
+                        const option = document.createElement('option');
+                        option.value = seccion.id_seccion;
+                        option.textContent = seccion.nombre_seccion;
+                        seccionSeleccionada.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        } else {
+            seccionSeleccionada.innerHTML = '<option value="">Selecciona Sección</option>';
+        }
+    });
 
-        });
-
+    // Cargar grados y secciones al cargar la página si ya hay un nivel seleccionado
+    const nivelId = nivelSeleccionado.value;
+    if (nivelId) {
+        nivelSeleccionado.dispatchEvent(new Event('change'));
+    }
+});
 
     </script>
 @endsection

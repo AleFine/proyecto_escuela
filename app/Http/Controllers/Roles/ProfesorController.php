@@ -85,6 +85,8 @@ class ProfesorController extends Controller
 
         $curso = $request->input('curso');
         $estudiante = $request->input('estudiante');
+        $profesor = $request->input('profesor');
+        $seccion = $request->input('seccion');
 
         for($i=1;$i<=9;$i++){
             $name = "nota".$i;
@@ -106,7 +108,7 @@ class ProfesorController extends Controller
             $calificacion->save();
         }
 
-        return redirect()->route('profesor.asignar_calificacion',['curso'=>$curso,'estudiante'=>$estudiante])
+        return redirect()->route('profesor.asignar_calificacion',['curso'=>$curso,'estudiante'=>$estudiante,'profesor'=>$profesor,'seccion'=>$seccion])
                 ->with('success', 'Se asigno correctamente las notas');
 
     }

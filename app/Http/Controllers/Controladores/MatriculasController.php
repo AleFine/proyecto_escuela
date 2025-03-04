@@ -126,12 +126,17 @@ class MatriculasController extends Controller
     public function edit($id)
     {
         try {
+            // Buscar la matrícula por su ID
             $matricula = Matricula::findOrFail($id);
+
+            // Obtener datos relacionados
             $alumnos = Alumno::all();
             $periodos = Periodo::all();
             $niveles = Nivel::all();
+            $grados = Grado::all(); // Todos los grados
+            $secciones = Seccion::all(); // Todas las secciones
 
-            return view('matriculas.edit', compact('matricula', 'alumnos', 'periodos', 'niveles'));
+            return view('matriculas.edit', compact('matricula', 'alumnos', 'periodos', 'niveles', 'grados', 'secciones'));
         } catch (\Exception $e) {
             Log::error('Error al editar matrícula:', [
                 'error' => $e->getMessage(),
@@ -205,15 +210,18 @@ class MatriculasController extends Controller
     public function destroy($id)
     {
         try {
+            // Buscar la matrícula por su ID
             $matricula = Matricula::findOrFail($id);
 
+            // Eliminar registros relacionados
             DB::table('matricula_cursos')->where('id_matricula', $id)->delete();
             DB::table('calificaciones')->where('id_matricula', $id)->delete();
 
+            // Eliminar la matrícula
             $matricula->delete();
 
+            // Aumentar el aforo de la sección
             $seccion = Seccion::findOrFail($matricula->id_seccion);
-
             $seccion->aforo += 1;
             $seccion->save();
 
@@ -228,7 +236,6 @@ class MatriculasController extends Controller
                 ->withErrors(['error' => 'Error al eliminar la matrícula']);
         }
     }
-
     public function show($id)
     {
         try {

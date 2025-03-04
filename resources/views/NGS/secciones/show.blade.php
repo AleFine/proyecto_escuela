@@ -40,10 +40,9 @@
                         <td>{{ $matricula->alumno->id_alumno }}</td>
                         <td>{{ $matricula->alumno->nombre }} {{ $matricula->alumno->apellido }}</td>
                         <td>
-                            <a href="{{ route('matriculas.edit', ['id_alumno' => $matricula->alumno->id_alumno, 'id_seccion' => $matricula->id_seccion]) }}"
-                                class="btn btn-warning">Editar Sección</a>
-                            <form action="{{ route('matriculas.destroy', ['id_alumno' => $matricula->alumno->id_alumno, 'id_seccion' => $matricula->id_seccion]) }}"
-                                method="POST" style="display:inline;">
+                            <a href="{{ route('matriculas.edit', $matricula->id_matricula) }}" class="btn btn-warning">Editar</a>
+
+                            <form action="{{ route('matriculas.destroy', $matricula->id_matricula) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de que desea retirar este estudiante?')">Retirar</button>

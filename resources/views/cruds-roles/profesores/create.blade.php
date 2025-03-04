@@ -52,7 +52,7 @@
                         <div class="form-group my-3">
                             <label for="area_academica">Departamento Académico</label>
                             <select name="area_academica" class="form-control" id="area_academica" required>
-                                <option value="">Selecciona un Grado</option>
+                                <option value="">Selecciona un Departamento</option>
                                 @foreach($areas as $area)
                                     <option value="{{ $area->id_area_academica }}">{{ $area->nombre_area }}</option>
                                 @endforeach
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="form-group my-3">
-                            <label for="nivel">Departamento Académico</label>
+                            <label for="nivel">Nivel</label>
                             <select name="nivel" class="form-control" id="nivel" required>
                                 <option value="">Selecciona un Nivel</option>
                                 @foreach($niveles as $nivel)
